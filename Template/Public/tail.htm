@@ -1,84 +1,87 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#333">
-    <style type="text/css">
-        /* 对于尾部样式进行修改 */
-        
-        .Tail_TextColor_link,
-        .Tail_TextColor {
-            color: #999;
-        }
-        
-        .Tail_TextColor_link:hover {
-            color: #D0D0D0;
-        }
-    </style>
-
-    <body>
-        <tr>
-            <td>
-                <svg id="Tail_Logo" xmlns="http://www.w3.org/2000/svg" style="enable-background:new 0 0 256 256;" viewBox="0 0 256 256" width="95" height="95" version="1.1" onMouseOver="Tail_LogoStyle_Over(evt)" onMouseOut="Tail_LogoStyle_Out(evt)">
-                    <style type="text/css">
-                        .Tail_LogoStyle {
-                            fill: #999;
-                        }
-
-                        .Tail_LogoStyle:hover {
-                            fill: #D0D0D0
-                        }
-                    </style>
-                    <g>
-                        <polygon class="Tail_LogoStyle" points="3,253 162,253 82.5,173.5" />
-                        <polygon class="Tail_LogoStyle" points="126,126 38.9,126 82.5,168.8" />
-                        <polygon class="Tail_LogoStyle" points="126.1,38.8 126.1,125.9 168.9,82.4" />
-                        <polygon class="Tail_LogoStyle" points="173.7,82.3 253,161.7 253,3" />
-                        <polygon class="Tail_LogoStyle"
-                            points="84.8,171.2 166.7,253 166.7,253 253,253 253,166.5 171.3,84.7" />
-                    </g>
-                </svg>
-            </td>
-            <td>
-                <div id="Tail_MainDiv">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td colspan="5" align="left" style="color: #999; font-size: 14px;">
-                                <hr width="100%" SIZE="1" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="5%" height="30" align="left" valign="bottom" style="color: #999; font-size: 14px; font-style: normal; font-weight: 400;">
-                                &nbsp;
-                            </td>
-                            <td width="30%" align="left" valign="bottom" style="color: #999; font-size: 14px; font-style: normal; font-weight: 400;">
-                                我们的经营范围
-                            </td>
-                            <td width="30%" align="center" valign="bottom" style="color: #999; font-size: 14px;">
-                                我们的伙伴
-                            </td>
-                            <td width="30%" align="right" valign="bottom" id="Tail_AboutURL" style="color: #999; font-size: 14px;" onClick="MM_goToURL('parent','../View/About.php');return document.MM_returnValue" onMouseOver="MM_changeProp('Tail_AboutURL','','color','#D0D0D0','TD')"
-                                onMouseOut="MM_changeProp('Tail_AboutURL','','color','#999','TD')">
-                                关于我们
-                            </td>
-                            <td width="5%" align="left" valign="bottom" style="color: #999; font-size: 14px;">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" align="left" style="color: #999; font-size: 14px;">
-                                <hr width="100%" SIZE="1" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="left" style="color: #999; font-size: 14px;"> 平面设计、后期制作、模型制作，据库设计</td>
-                            <td align="center" id="Tail_PSTURL" style="color: #999; font-size: 14px;" onClick="MM_openBrWindow('http://www.xingchen160.icoc.me','','')" onMouseOver="MM_changeProp('Tail_PSTURL','','color','#D0D0D0','TD')" onMouseOut="MM_changeProp('Tail_PSTURL','','color','#999','TD')">墨轩科技平面设计</td>
-                            <td colspan="2" align="right" style="color: #999; font-size: 14px;">制作:墨轩科技开发部 by_墨者 </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="left" style="color: #999; font-size: 14px;">网站建设、Flash动画制作、软件开发</td>
-                            <td align="center" style="color: #999; font-size: 14px;">墨轩科技开发部</td>
-                            <td id="Tail_We" colspan="2" align="right" style="color: #999; font-size: 14px;" onClick="MM_openBrWindow('http://free.3v.do/gbook/index.asp?username=jsker','','')" onMouseOver="MM_changeProp('Tail_We','','color','#D0D0D0','TD')" onMouseOut="MM_changeProp('Tail_We','','color','#999','TD')">想与我们直接联系?请点击这里</td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </body>
+<style type="text/css">
+    /* 对于尾部样式进行修改 */
+    
+    #Tail #Tail_MainDiv td {
+        color: #999;
+        font-size: 14px;
+    }
+    
+    #Tail #Tail_MainDiv td a {
+        text-decoration: none;
+        color: #999;
+    }
+    
+    #Tail #Tail_MainDiv td a:hover {
+        color: #D0D0D0;
+    }
+    /* 对于尾部Logo的样式设置 */
+    
+    #Tail #Tail_Logo {
+        fill: #999;
+    }
+    
+    #Tail #Tail_Logo:hover {
+        fill: #D0D0D0
+    }
+</style>
+<table id="Tail" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#333">
+    <tr>
+        <td>
+            <svg id="Tail_Logo" xmlns="http://www.w3.org/2000/svg" style="enable-background:new 0 0 256 256;" viewBox="0 0 256 256" width="95" height="95" version="1.1">
+                <polygon points="3,253 162,253 82.5,173.5" />
+                <polygon points="126,126 38.9,126 82.5,168.8" />
+                <polygon points="126.1,38.8 126.1,125.9 168.9,82.4" />
+                <polygon points="173.7,82.3 253,161.7 253,3" />
+                <polygon points="84.8,171.2 166.7,253 166.7,253 253,253 253,166.5 171.3,84.7" />
+            </svg>
+        </td>
+        <td>
+            <div id="Tail_MainDiv">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="5" align="left">
+                            <hr width="100%" SIZE="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="5%" height="30" align="left" valign="bottom" style="font-size: 14px; font-style: normal; font-weight: 400;">
+                            &nbsp;
+                        </td>
+                        <td width="30%" align="left" valign="bottom" style="font-size: 14px; font-style: normal; font-weight: 400;">
+                            我们的经营范围
+                        </td>
+                        <td width="30%" align="center" valign="bottom">
+                            我们的伙伴
+                        </td>
+                        <td class="Tail_TextColor_link" width="30%" align="right" valign="bottom" id="Tail_AboutURL">
+                            <a href="https://MemoryShadow.freetzi.com/View/About.php">关于我们</a>
+                        </td>
+                        <td width="5%" align="left" valign="bottom">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="left">
+                            <hr width="100%" SIZE="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="left"> 平面设计、后期制作、模型制作，据库设计</td>
+                        <td align="center" id="Tail_PSTURL">
+                            <a href="http://www.xingchen160.icoc.me">墨轩科技平面设计</a>
+                        </td>
+                        <td colspan="2" align="right">制作:墨轩科技开发部 by_墨者</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="left">网站建设、Flash动画制作、软件开发</td>
+                        <td align="center">墨轩科技开发部</td>
+                        <td id="Tail_We" colspan="2" align="right">
+                            <a href="http://free.3v.do/gbook/index.asp?username=jsker">想与我们直接联系?请点击这里</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
 </table>
