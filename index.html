@@ -7,17 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>墨兮枫的个人博客</title>
     <script>
+        var Data;
+
         function CaiHongPi(id) {
-            var xmlhttp;
-            if (window.XMLHttpRequest) {
-                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // IE6, IE5 浏览器执行代码
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
+            var xmlhttp = GetXmlHttp();
             xmlhttp.onreadystatechange = function() {
-                // 当相应达成，并且成功的时候，就修改数据
+                // 当响应达成，并且成功的时候，就修改数据
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById(id).innerHTML = xmlhttp.responseText;
                 }
@@ -26,8 +21,38 @@
             xmlhttp.send();
         }
 
+        function GetErrorMsg(ErrorCode) {
+            var xmlhttp = GetXmlHttp();
+            xmlhttp.onreadystatechange = function() {
+                // 当响应达成，并且成功的时候，就修改数据
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById('ErrorCode').innerHTML = JSON.parse(xmlhttp.responseText).ErrorCode;
+                    document.getElementById('ErrorText').innerHTML = JSON.parse(xmlhttp.responseText).ErrorText;
+                    document.getElementById('ErrorPrint').innerHTML = JSON.parse(xmlhttp.responseText).ErrorPrint;
+                    document.getElementById('ErrorInfo').innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
+            xmlhttp.send();
+        }
+
+
+
+        function GetXmlHttp() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
+
         function Init() {
             CaiHongPi('CaiHongPi');
+            GetErrorMsg('404');
         }
     </script>
 </head>
@@ -36,7 +61,11 @@
     <a href="https://www.baidu.com">打开百度</a>
     <a href="https://MemoryShadow.freetzi.com">打开支柱官网</a>
     <br />
-    <span id="CaiHongPi"></span>
+    <span id="CaiHongPi"></span><br /> 错误代码:
+    <span id="ErrorCode"></span><br /> 错误描述:
+    <span id="ErrorText"></span><br /> 调侃:
+    <span id="ErrorPrint"></span><br />完整返回:
+    <span id="ErrorInfo"></span><br />
 </body>
 
 </html>
