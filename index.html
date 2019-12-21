@@ -25,14 +25,18 @@
             xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
             xmlhttp.send();
         }
+
+        function Init() {
+            CaiHongPi('CaiHongPi');
+        }
     </script>
 </head>
 
-<body>
+<body onload="Init()">
     <a href="https://www.baidu.com">打开百度</a>
     <a href="https://MemoryShadow.freetzi.com">打开支柱官网</a>
     <br />
-    <span id="CaiHongPi" onload="CaiHongPi(this.id)"></span>
+    <span id="CaiHongPi"></span>
 </body>
 
 </html>
