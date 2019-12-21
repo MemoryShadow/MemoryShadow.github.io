@@ -6,11 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>墨兮枫的个人博客</title>
+    <script>
+        function CaiHongPi(id) {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                // 当相应达成，并且成功的时候，就修改数据
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById(id).innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 
 <body>
     <a href="https://www.baidu.com">打开百度</a>
     <a href="https://MemoryShadow.freetzi.com">打开支柱官网</a>
+    <br />
+    <span id="CaiHongPi" onload="CaiHongPi(this.id)"></span>
 </body>
 
 </html>
