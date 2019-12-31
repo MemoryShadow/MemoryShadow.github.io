@@ -8,7 +8,6 @@
     <title>墨兮枫的个人博客</title>
     <script>
         var Data;
-
         function CaiHongPi(id) {
             var xmlhttp = GetXmlHttp();
             xmlhttp.onreadystatechange = function() {
@@ -20,13 +19,12 @@
             xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
             xmlhttp.send();
         }
-
         function GetErrorMsg(ErrorCode) {
             var xmlhttp = GetXmlHttp();
             xmlhttp.onreadystatechange = function() {
                 // 当响应达成，并且成功的时候，就修改数据
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById('ErrorCode').innerHTML = JSON.parse(xmlhttp.responseText).ErrorCode;
+                    document.getElementById('ErrorCode').value = JSON.parse(xmlhttp.responseText).ErrorCode;
                     document.getElementById('ErrorText').innerHTML = JSON.parse(xmlhttp.responseText).ErrorText;
                     document.getElementById('ErrorPrint').innerHTML = JSON.parse(xmlhttp.responseText).ErrorPrint;
                     document.getElementById('ErrorInfo').innerHTML = xmlhttp.responseText;
@@ -35,9 +33,6 @@
             xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
             xmlhttp.send();
         }
-
-
-
         function GetXmlHttp() {
             var xmlhttp;
             if (window.XMLHttpRequest) {
@@ -49,7 +44,6 @@
             }
             return xmlhttp;
         }
-
         function Init() {
             CaiHongPi('CaiHongPi');
             GetErrorMsg('404');
@@ -59,15 +53,16 @@
 
 <body onload="Init()">
     <a href="https://www.baidu.com">打开百度</a>
+    <a href="https://github.com/MemoryShadow/MemoryShadow.github.io">打开项目页面</a>
     <a href="https://MemoryShadow.freetzi.com">打开支柱官网</a>
     <br />
     <hr width="100%" size="1" />
-    <h3>彩虹屁接口调用示例(感谢<a href="https://shadiao.app/">沙雕APP</a>)</h3>
+    <h3>彩虹屁接口调用示例(感谢<a href="https://shadiao.app/">沙雕APP</a>)<button onclick="CaiHongPi('CaiHongPi');">刷新</button></h3>
     <span id="CaiHongPi"></span><br />
     <hr width="100%" size="1" />
     <h3>ErrorMsg项目示例</h3>
     错误代码:
-    <span id="ErrorCode"></span><br /> 错误描述:
+    <input onblur="this.style.border = 'none';GetErrorMsg(this.value)" onclick="this.style.border = ''" style="border:none;font-size: 17px;" id="ErrorCode"></input><br /> 错误描述:
     <span id="ErrorText"></span><br /> 调侃:
     <span id="ErrorPrint"></span><br /> 完整返回:
     <span id="ErrorInfo"></span><br />
