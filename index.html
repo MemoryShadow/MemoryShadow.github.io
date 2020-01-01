@@ -7,10 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>墨兮枫的个人博客</title>
     <script>
-        var Data;
         function CaiHongPi(id) {
             var xmlhttp = GetXmlHttp();
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 // 当响应达成，并且成功的时候，就修改数据
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById(id).innerHTML = xmlhttp.responseText;
@@ -21,7 +20,7 @@
         }
         function GetErrorMsg(ErrorCode) {
             var xmlhttp = GetXmlHttp();
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 // 当响应达成，并且成功的时候，就修改数据
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById('ErrorCode').value = JSON.parse(xmlhttp.responseText).ErrorCode;
@@ -31,6 +30,20 @@
                 }
             }
             xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
+            xmlhttp.send();
+        }
+        var Data;
+        function Translate(Query) {
+            var xmlhttp = GetXmlHttp();
+            xmlhttp.onreadystatechange = function () {
+                // 当响应达成，并且成功的时候，就修改数据
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    Data = xmlhttp.responseText;
+                    document.getElementById('TranslateResult').innerHTML = JSON.parse(xmlhttp.responseText).sentences[0].trans;
+                    document.getElementById('TranslateResultSource').innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=Translate&Query=" + Query, true);
             xmlhttp.send();
         }
         function GetXmlHttp() {
@@ -46,7 +59,8 @@
         }
         function Init() {
             CaiHongPi('CaiHongPi');
-            GetErrorMsg('404');
+            GetErrorMsg(ErrorCode.value);
+            Translate(TranslateSource.value);
         }
     </script>
 </head>
@@ -58,16 +72,28 @@
     <br />
     <hr width="100%" size="1" />
     <h3>彩虹屁接口调用示例(感谢<a href="https://shadiao.app/">沙雕APP</a>)<button onclick="CaiHongPi('CaiHongPi');">
-        <img style="height: 17px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTc3NzgzNDc2ODg4IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjcgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIxMjciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwLjU4NTkzNzUiIGhlaWdodD0iMjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik0xMDIwLjQ0NDQ0NCA0NjAuOCA4MzQuODQ0NDQ0IDIzMC40Yy0xOS4yLTI1LjYtNTcuNi0yNS42LTc2LjggMEw1NzIuNDQ0NDQ0IDQ2MC44Yy0xMi44IDE5LjIgMCA0NC44IDE5LjIgNDQuOGw3MC40IDBjMCAxMzQuNCAwIDMwNy4yLTI0My4yIDQ0OC02LjQgNi40IDAgMTIuOCA2LjQgMTIuOCA0NTQuNC03MC40IDQ5Mi44LTM3Ny42IDQ5Mi44LTQ2MC44bDc2LjggMEMxMDIwLjQ0NDQ0NCA1MDUuNiAxMDMzLjI0NDQ0NCA0ODAgMTAyMC40NDQ0NDQgNDYwLjhMMTAyMC40NDQ0NDQgNDYwLjggMTAyMC40NDQ0NDQgNDYwLjh6TTQzOC4wNDQ0NDQgNTE4LjQgMzYxLjI0NDQ0NCA1MTguNGMwLTEzNC40IDAtMzA3LjIgMjQzLjItNDQ4IDYuNC02LjQgMC0xMi44LTYuNC0xMi44QzE0My42NDQ0NDQgMTI4IDEwNS4yNDQ0NDQgNDM1LjIgMTA1LjI0NDQ0NCA1MTguNEwyOC40NDQ0NDQgNTE4LjRDMi44NDQ0NDQgNTE4LjQtOS45NTU1NTYgNTQ0IDkuMjQ0NDQ0IDU2My4yTDE5NC44NDQ0NDQgNzkzLjZjMTkuMiAyNS42IDU3LjYgMjUuNiA3Ni44IDBsMTg1LjYtMjMwLjRDNDcwLjA0NDQ0NCA1NDQgNDU3LjI0NDQ0NCA1MTguNCA0MzguMDQ0NDQ0IDUxOC40TDQzOC4wNDQ0NDQgNTE4LjQgNDM4LjA0NDQ0NCA1MTguNHoiIHAtaWQ9IjIxMjgiPjwvcGF0aD48L3N2Zz4=" />
-        </button></h3>
+            <img style="height: 17px;"
+                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTc3NzgzNDc2ODg4IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjcgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIxMjciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwLjU4NTkzNzUiIGhlaWdodD0iMjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik0xMDIwLjQ0NDQ0NCA0NjAuOCA4MzQuODQ0NDQ0IDIzMC40Yy0xOS4yLTI1LjYtNTcuNi0yNS42LTc2LjggMEw1NzIuNDQ0NDQ0IDQ2MC44Yy0xMi44IDE5LjIgMCA0NC44IDE5LjIgNDQuOGw3MC40IDBjMCAxMzQuNCAwIDMwNy4yLTI0My4yIDQ0OC02LjQgNi40IDAgMTIuOCA2LjQgMTIuOCA0NTQuNC03MC40IDQ5Mi44LTM3Ny42IDQ5Mi44LTQ2MC44bDc2LjggMEMxMDIwLjQ0NDQ0NCA1MDUuNiAxMDMzLjI0NDQ0NCA0ODAgMTAyMC40NDQ0NDQgNDYwLjhMMTAyMC40NDQ0NDQgNDYwLjggMTAyMC40NDQ0NDQgNDYwLjh6TTQzOC4wNDQ0NDQgNTE4LjQgMzYxLjI0NDQ0NCA1MTguNGMwLTEzNC40IDAtMzA3LjIgMjQzLjItNDQ4IDYuNC02LjQgMC0xMi44LTYuNC0xMi44QzE0My42NDQ0NDQgMTI4IDEwNS4yNDQ0NDQgNDM1LjIgMTA1LjI0NDQ0NCA1MTguNEwyOC40NDQ0NDQgNTE4LjRDMi44NDQ0NDQgNTE4LjQtOS45NTU1NTYgNTQ0IDkuMjQ0NDQ0IDU2My4yTDE5NC44NDQ0NDQgNzkzLjZjMTkuMiAyNS42IDU3LjYgMjUuNiA3Ni44IDBsMTg1LjYtMjMwLjRDNDcwLjA0NDQ0NCA1NDQgNDU3LjI0NDQ0NCA1MTguNCA0MzguMDQ0NDQ0IDUxOC40TDQzOC4wNDQ0NDQgNTE4LjQgNDM4LjA0NDQ0NCA1MTguNHoiIHAtaWQ9IjIxMjgiPjwvcGF0aD48L3N2Zz4=" />
+        </button>
+    </h3>
     <span id="CaiHongPi"></span><br />
     <hr width="100%" size="1" />
     <h3>ErrorMsg项目示例</h3>
     错误代码:
-    <input onblur="this.style.border = 'none';GetErrorMsg(this.value)" onclick="this.style.border = ''" style="border:none;font-size: 17px;" id="ErrorCode"></input><br /> 错误描述:
+    <input onblur="this.style.border = 'none';GetErrorMsg(this.value)" onclick="this.style.border = ''"
+        style="border:none;font-size: 17px;" id="ErrorCode" value="404"></input><br /> 错误描述:
     <span id="ErrorText"></span><br /> 调侃:
     <span id="ErrorPrint"></span><br /> 完整返回:
     <span id="ErrorInfo"></span><br />
+    <hr width="100%" size="1" />
+    <h3>翻译接口(Google 翻译)</h3>
+    源内容:
+    <input onblur="this.style.border = 'none';Translate(this.value)" onclick="this.style.border = ''"
+        style="border:none;font-size: 17px;" id="TranslateSource" value="TranslateSource"></input><br />
+    翻译后的内容:
+    <span id="TranslateResult"></span><br />
+    返回具体内容:
+    <span id="TranslateResultSource"></span><br />
     <hr width="100%" size="1" />
 </body>
 
