@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3DBox</title>
+    <style>
+        html {
+            background: linear-gradient(rgb(152, 222, 235) 0%, #FFFFFF 50%);
+            width: 100%;
+            height: 100%;
+            transition: all .3s ease-in;
+        }
+
+        .sence {
+            background-color: #000000;
+            width: 600px;
+            height: 600px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .box {
+            /* background-color: rgba(127, 255, 212, 0.233); */
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform-origin: center center 75px;
+            margin: auto;
+            transform: skew(0deg) translate3d(-60px, 200px, 0px) rotateX(35deg) rotateY(45deg) rotateZ(90deg);
+        }
+
+        .box div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 30px 5px #fff;
+            opacity: 0.8;
+        }
+
+        .box div:nth-child(1) {
+            /*照片可以另行添加，也可以换成背景色*/
+            background-size: 300px 300px;
+            transform-origin: top;
+            transform: rotateX(90deg);
+        }
+
+        .box div:nth-child(2) {
+            background-size: 300px 300px;
+            transform-origin: left;
+            transform: rotateY(-90deg);
+        }
+
+        .box div:nth-child(3) {
+            background-size: 300px 300px;
+        }
+
+        .box div:nth-child(4) {
+            background-size: 300px 300px;
+            transform-origin: right;
+            transform: rotateY(90deg);
+        }
+
+        .box div:nth-child(5) {
+            background-size: 300px 300px;
+            transform-origin: bottom;
+            transform: rotateX(-90deg);
+        }
+
+        .box div:nth-child(6) {
+            background-size: 300px 300px;
+            transform: translateZ(300px);
+        }
+    </style>
+    <script>
+        // 初始化信息
+        // 鼠标是否按下
+        var MouseDown = false;
+        // 记录坐标与计算值(为计算下一次偏移量)
+        var MouseMoveData = JSON.parse("{ \"X\": 0, \"Y\": 0}");
+        var MouseMoveOld_ = JSON.parse("{ \"X\": 0, \"Y\": 0}");
+        var BoxInfo = JSON.parse("{\"translate3d\":{\"X\":-60,\"Y\":200,\"Z\":0},\"rotate\":{\"X\":35,\"Y\":45,\"Z\":90}}")
+
+        function Mouse(Info, id, value) {
+            switch (Info) {
+                case 'MouseDown':
+                    // 打开鼠标按下标记
+                    MouseDown = true;
+                    // 初始化MouseMoveOld_
+                    MouseMoveOld_ = JSON.parse("{ \"X\": " + (value ? value.clientX : 0) + ", \"Y\": " + (value ? value.clientY : 0) + " }");
+                    break;
+                case 'MouseMove':
+                    if (MouseDown) {
+                        // 计算偏移量
+                        MouseMoveData = JSON.parse("{ \"X\": " + ((value ? value.clientX : 0) - MouseMoveOld_.X) + ", \"Y\": " + ((value ? value.clientY : 0) - MouseMoveOld_.Y) + " }");
+                        // 更新位置
+                        MouseMoveOld_ = JSON.parse("{ \"X\": " + (value ? value.clientX : 0) + ", \"Y\": " + (value ? value.clientY : 0) + " }");
+                        // 更新配置
+                        if (value.altKey) {
+                            BoxInfo.rotate.X += MouseMoveData.X;
+                            BoxInfo.rotate.Y += MouseMoveData.Y;
+                        } else if (value.ctrlKey) {
+                            BoxInfo.rotate.Z += MouseMoveData.X;
+                            BoxInfo.rotate.Y += MouseMoveData.Y;
+                        } else if (value.shiftKey) {
+                            BoxInfo.translate3d.X += MouseMoveData.X / 2;
+                            BoxInfo.translate3d.Y += MouseMoveData.Y / 2;
+                        } else {
+                            BoxInfo.translate3d.X += MouseMoveData.X;
+                            BoxInfo.translate3d.Y += MouseMoveData.Y;
+                        }
+
+                        // 修改数据
+                        Box.style.transform = "skew(0deg) translate3d(" + BoxInfo.translate3d.X + "px, " + BoxInfo.translate3d.Y + "px, " + BoxInfo.translate3d.Z + "px) rotateX(" + BoxInfo.rotate.X + "deg) rotateY(" + BoxInfo.rotate.Y + "deg) rotateZ(" + BoxInfo.rotate.Z + "deg)";
+                    }
+                    break;
+                case 'MouseUp':
+                    // 关闭鼠标按下标记
+                    MouseDown = false;
+                    // 清空MouseMoveOld_
+                    MouseMoveOld_ = JSON.parse("{ \"X\": 0, \"Y\": 0 }");
+                    break;
+                default:
+                    break;
+            }
+            // Debug打印块
+            if (MouseDown) {
+                console.log(Info + ':' + id + (value ? ('[' + value.clientY + ',' + value.clientY + ']') : ''));
+                // 检查数据
+                if (MouseDown.x > 10 || MouseDown.Y > 10) {
+                    console.log("value");
+                    console.log(value);
+                } else {
+                    console.log("MouseMoveData");
+                    console.log(MouseMoveData);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onmouseup="Mouse('MouseUp',this.id,event)">
+    <div class="sence">
+        <div id="Box" class="box" onmousedown="Mouse('MouseDown',this.id,event)"
+            onmousemove="Mouse('MouseMove',this.id,event)">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+
+</html>
