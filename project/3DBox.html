@@ -154,23 +154,27 @@
     </script>
 </head>
 
-<body onload="Init(event)" onmouseup="Mouse('MouseUp',this.id,event)">
-    <div id="System_Info">
-        界面宽度:
-        <span id="Page_Specification"></span>|
-        按下Alt和Ctrl拖动鼠标进行旋转|按下Shift放慢速度
-    </div>
-    <div id="Sence" class="sence">
-        <div id="Box" class="box" onmousedown="Mouse('MouseDown',this.id,event)"
-            onmousemove="Mouse('MouseMove',this.id,event)">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+<body onload="Init(event)">
+    <div style="width: 100%;height: 100%;position:fixed;" onmouseup="Mouse('MouseUp','Box',event)"
+        onmousemove="Mouse('MouseMove','Box',event)">
+        <div id="System_Info" onmousemove="Mouse('MouseMove','Box',event)">
+            界面宽度:
+            <span id="Page_Specification"></span>|
+            按下Alt和Ctrl拖动鼠标进行旋转|按下Shift放慢速度
+        </div>
+        <div id="Sence" class="sence" onmousemove="Mouse('MouseMove','Box',event)">
+            <div id="Box" class="box" onmousedown="Mouse('MouseDown',this.id,event)"
+                onmousemove="Mouse('MouseMove',this.id,event)">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
+
 </body>
 
 </html>
