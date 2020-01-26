@@ -85,6 +85,120 @@
         }
     </style>
     <script>
+        // Box类(用于准备与公用环境隔离)
+        class Class_Box {
+            // 数据
+            id = '0';
+            Config = getBoxDefaultConfig();
+            // 鼠标是否按下
+            MouseDown = false;
+
+            // 构造器(需要指定要绑定的id)
+            constructor(id, { Len = undefined, Color = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
+                // 绑定id
+                this.id = id;
+                // 对于目标数据进行初始化
+                this.setBoxLen(Len);
+                this.setBoxColor(Color);
+                this.setBoxTranslate({ X: translate_X, Y: translate_Y, Z: translate_Z });
+                this.setBoxRotate({ X: rotate_X, Y: rotate_Y, Z: rotate_Z });
+            }
+
+            // 盒子默认配置信息储存表
+            getBoxDefaultConfig() {
+                return {
+                    "BoxLen": 300,
+                    "BoxColor": "fff",
+                    "translate3d": {
+                        "X": -60,
+                        "Y": 200,
+                        "Z": 0
+                    },
+                    "rotate": {
+                        "X": 35,
+                        "Y": 45,
+                        "Z": 90
+                    }
+                };
+            }
+
+            // 设置盒子数据为默认
+            setBoxDefaultConfig() {
+                this.Config = getBoxDefaultConfig();
+                this.RefreshBox();
+            }
+
+            // 返回盒子的配置信息
+            getBoxInfo() {
+                return this.Config;
+            }
+
+            // 设置盒子的配置信息
+            setBoxInfo(key, value = undefined) {
+                // 写入数据(检测数据是否为undefined,如果为空就设置为当前的配置)
+                this.Config[key] = (value != undefined ? value : this.Config[key]);
+                // 执行刷新函数
+                this.RefreshBox();
+            }
+
+            // 配置接口
+            setBoxLen(Len = undefined) {
+                this.setBoxInfo("BoxLen", Len != undefined ? Len : this.getBoxInfo()['BoxLen']);
+            }
+
+            // 设置颜色
+            setBoxColor(Color = undefined) {
+                this.setBoxInfo("BoxColor", Color != undefined ? Color : this.getBoxInfo()['BoxColor']);
+            }
+
+            // 设置位置信息
+            setBoxTranslate({ X = undefined, Y = undefined, Z = undefined } = {}) {
+                // 取出值
+                var Temp_Translate_Data = this.getBoxInfo()['translate3d'];
+                // 如果为-1就采用默认值
+                var Temp_NewTranslate_Data = {
+                    "X": X != undefined ? X + Temp_Translate_Data['X'] : Temp_Translate_Data['X'],
+                    "Y": Y != undefined ? Y + Temp_Translate_Data['Y'] : Temp_Translate_Data['Y'],
+                    "Z": Z != undefined ? Z + Temp_Translate_Data['Z'] : Temp_Translate_Data['Z']
+                }
+                this.setBoxInfo('translate3d', Temp_NewTranslate_Data);
+            }
+
+            // 设置旋转信息
+            setBoxRotate({ X = undefined, Y = undefined, Z = undefined } = {}) {
+                // 取出值
+                var Temp_Rotate_Data = this.getBoxInfo()['rotate'];
+                // 如果为-1就采用默认值
+                var Temp_NewRotate_Data = {
+                    "X": X != undefined ? X + Temp_Rotate_Data['X'] : Temp_Rotate_Data['X'],
+                    "Y": Y != undefined ? Y + Temp_Rotate_Data['Y'] : Temp_Rotate_Data['Y'],
+                    "Z": Z != undefined ? Z + Temp_Rotate_Data['Z'] : Temp_Rotate_Data['Z']
+                }
+                this.setBoxInfo('rotate', Temp_NewRotate_Data);
+            }
+
+            // 刷新界面(从配置取读信息然后更新信息)
+            RefreshBox() {
+                // 取出信息
+                var BoxConfigInfo = this.getBoxInfo(this.id);
+                // 获取盒子对象
+                var BoxObject = document.getElementById(this.id);
+                // 更新数据
+                BoxObject.style.width = BoxConfigInfo['BoxLen'] + "px";
+                BoxObject.style.height = BoxConfigInfo['BoxLen'] + "px";
+                BoxObject.style.transform = "skew(0deg) translate3d(" + BoxConfigInfo['translate3d']['X'] + "px, " + BoxConfigInfo['translate3d']['Y'] + "px, " + BoxConfigInfo['translate3d']['Z'] + "px) rotateX(" + BoxConfigInfo['rotate']['X'] + "deg) rotateY(" + BoxConfigInfo['rotate']['Y'] + "deg) rotateZ(" + BoxConfigInfo['rotate']['Z'] + "deg)";
+                // 更新子对象
+                for (var index = 1; index <= 6; index++) {
+                    document.querySelector('#' + this.id + ' > div:nth-child(' + index + ')').style.backgroundSize = BoxConfigInfo['BoxLen'] + "px " + BoxConfigInfo['BoxLen'] + "px";
+                    document.querySelector('#' + this.id + ' > div:nth-child(' + index + ')').style.boxShadow = "0 0 30px 5px #" + BoxConfigInfo['BoxColor'];
+                }
+                document.querySelector('#' + this.id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
+            }
+
+        }
+    </script>
+    <script>
+
         // 初始化信息
         // 鼠标是否按下
         var MouseDown = false;
@@ -99,14 +213,14 @@
                     // 打开鼠标按下标记
                     MouseDown = true;
                     // 初始化MouseMoveOld_
-                    MouseMoveOld_ = JSON.parse({ "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) });
+                    MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
                     break;
                 case 'MouseMove':
                     if (MouseDown) {
                         // 计算偏移量
-                        MouseMoveData = JSON.parse({ "X": ((value ? value.clientX : 0) - MouseMoveOld_.X), "Y": ((value ? value.clientY : 0) - MouseMoveOld_.Y) });
+                        MouseMoveData = { "X": ((value ? value.clientX : 0) - MouseMoveOld_.X), "Y": ((value ? value.clientY : 0) - MouseMoveOld_.Y) };
                         // 更新位置
-                        MouseMoveOld_ = JSON.parse({ "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) });
+                        MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
                         // 更新配置
                         if (value.altKey) {
                             setBoxInfoRotate(id, { X: MouseMoveData.X, Y: MouseMoveData.Y });
@@ -136,7 +250,7 @@
                     // 关闭鼠标按下标记
                     MouseDown = false;
                     // 清空MouseMoveOld_
-                    MouseMoveOld_ = JSON.parse("{ \"X\": 0, \"Y\": 0 }");
+                    MouseMoveOld_ = { "X": 0, "Y": 0 };
                     break;
                 default:
                     break;
@@ -155,6 +269,7 @@
                 }
             }
         }
+
         // 配置接口
         function setBoxLen(id, Len) {
             setBoxInfo(id, "BoxLen", Len);
@@ -180,7 +295,7 @@
                     "Y": 45,
                     "Z": 90
                 }
-            }
+            };
         }
 
         // 保存所有盒子的配置信息
@@ -218,7 +333,6 @@
                 "Y": Y != -1 ? Y + Temp_Translate_Data['Y'] : Temp_Translate_Data['Y'],
                 "Z": Z != -1 ? Z + Temp_Translate_Data['Z'] : Temp_Translate_Data['Z']
             }
-            console.log(Temp_NewTranslate_Data);
             setBoxInfo(id, 'translate3d', Temp_NewTranslate_Data);
         }
 
@@ -259,12 +373,16 @@
             document.querySelector('#' + id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
         }
 
+        var p;
         // 初始化操作
         function Init(event) {
-            setBoxDefaultConfig('Box')
+            p = new Class_Box('Box');
+            setBoxDefaultConfig('Box');
             Page_Specification.innerHTML = (document.body.clientWidth);
         }
+
     </script>
+
 </head>
 
 <body onload="Init(event)">
