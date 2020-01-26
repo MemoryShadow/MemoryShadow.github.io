@@ -99,14 +99,14 @@
                     // 打开鼠标按下标记
                     MouseDown = true;
                     // 初始化MouseMoveOld_
-                    MouseMoveOld_ = JSON.parse("{ \"X\": " + (value ? value.clientX : 0) + ", \"Y\": " + (value ? value.clientY : 0) + " }");
+                    MouseMoveOld_ = JSON.parse({ "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) });
                     break;
                 case 'MouseMove':
                     if (MouseDown) {
                         // 计算偏移量
-                        MouseMoveData = JSON.parse("{ \"X\": " + ((value ? value.clientX : 0) - MouseMoveOld_.X) + ", \"Y\": " + ((value ? value.clientY : 0) - MouseMoveOld_.Y) + " }");
+                        MouseMoveData = JSON.parse({ "X": ((value ? value.clientX : 0) - MouseMoveOld_.X), "Y": ((value ? value.clientY : 0) - MouseMoveOld_.Y) });
                         // 更新位置
-                        MouseMoveOld_ = JSON.parse("{ \"X\": " + (value ? value.clientX : 0) + ", \"Y\": " + (value ? value.clientY : 0) + " }");
+                        MouseMoveOld_ = JSON.parse({ "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) });
                         // 更新配置
                         if (value.altKey) {
                             setBoxInfoRotate(id, { X: MouseMoveData.X, Y: MouseMoveData.Y });
@@ -270,12 +270,12 @@
 <body onload="Init(event)">
     <div style="width: 100%;height: 100%;position:fixed;" onmouseup="Mouse('MouseUp','Box',event)"
         onmousemove="Mouse('MouseMove','Box',event)">
-        <div id="System_Info" onmousemove="Mouse('MouseMove','Box',event)">
+        <div id="System_Info">
             界面宽度:
             <span id="Page_Specification"></span>|
             按下Alt和Ctrl拖动鼠标进行旋转|按下Shift放慢速度|滚动滚轮缩放
         </div>
-        <div id="Sence" class="sence" onmousemove="Mouse('MouseMove','Box',event)">
+        <div id="Sence" class="sence">
             <div id="Box" class="box" onmousedown="Mouse('MouseDown',this.id,event)"
                 onmousemove="Mouse('MouseMove',this.id,event)" onmousewheel="Mouse('MouseWheel',this.id,event)">
                 <div></div>
