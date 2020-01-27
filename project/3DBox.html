@@ -15,9 +15,9 @@
         }
 
         .sence {
-            background-color: #000000;
-            width: 80%;
-            height: 80%;
+            background: linear-gradient(rgb(158, 215, 250) 0%, #000000 10%);
+            width: 100%;
+            height: 100%;
             position: fixed;
             top: 0;
             left: 0;
@@ -108,7 +108,7 @@
             }
 
             // 鼠标信息捕获函数
-            Mouse(Info, value) {
+            Mouse(Info, value = event) {
                 switch (Info) {
                     case 'MouseDown':
                         // 打开鼠标按下标记
@@ -154,6 +154,7 @@
                         this._MouseMoveOld_ = { "X": 0, "Y": 0 };
                         break;
                     default:
+                        console.log('Not know Data Info: ' + Info + ' is What');
                         break;
                 }
                 // Debug打印块
@@ -170,7 +171,6 @@
                     }
                 }
             }
-
 
             // 盒子默认配置信息储存表
             getBoxDefaultConfig() {
@@ -263,14 +263,58 @@
                 document.querySelector('#' + this._id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
             }
 
+            // 将指定id的div部署为一个Box,并且按照配置部署好,返回一个此对象的控制模块(必须赋值给先前定义名字的对象)
+            static addBoxObject(id) {
+                // 准备构架DIV
+                var id_Obj = document.getElementById(id);
+                for (var index = 1; index <= 6; index++) {
+                    id_Obj.appendChild(document.createElement("div"));
+                }
+                // 设置DIV
+                id_Obj.className = "box";
+                // 将新对象按照ID放进BoxList中
+                Class_Box.BoxList[id] = new Class_Box(id);
+                id_Obj.onmousedown = function () { Class_Box.MouseDown(this.id); }
+                id_Obj.onmousemove = function () { Class_Box.MouseMove(this.id); }
+                id_Obj.onmousewheel = function () { Class_Box.MouseWheel(this.id); }
+                id_Obj.onmouseup = function () { Class_Box.MouseUp(this.id); }
+            }
+
+            // 鼠标释放事件
+            static MouseUp(id) {
+                Class_Box._MouseUp = !Class_Box._MouseUp;
+                Class_Box.BoxList[id].Mouse('MouseUp');
+            }
+
+            static MouseMove(id) {
+                Class_Box.BoxList[id].Mouse('MouseMove');
+            }
+
+            static MouseDown(id) {
+                Class_Box.BoxList[id].Mouse('MouseDown');
+            }
+
+            static MouseWheel(id) {
+                Class_Box.BoxList[id].Mouse('MouseWheel')
+            }
+
         }
+
+        // 静态数据
+        // 数据对查表
+        Class_Box.BoxList = {
+            "Box": {}
+        };
+        // 鼠标松开属性
+        Class_Box._MouseUp = true;
     </script>
     <script>
         var Div_Box;
+        var Div_Box2;
         // 初始化操作
         function Init(event) {
-            Div_Box = new Class_Box('Box');
-            // setBoxDefaultConfig('Box');
+            Class_Box.addBoxObject('Box');
+            Class_Box.addBoxObject('Box2');
             Page_Specification.innerHTML = (document.body.clientWidth);
         }
 
@@ -279,23 +323,16 @@
 </head>
 
 <body onload="Init(event)">
-    <div style="width: 100%;height: 100%;position:fixed;" onmouseup="Div_Box.Mouse('MouseUp',event)"
-        onmousemove="Div_Box.Mouse('MouseMove',event)">
+    <div style="width: 100%;height: 100%;position:fixed;" onmouseup="Div_Box.Mouse('MouseUp')"
+        onmousemove="Div_Box.Mouse('MouseMove')">
         <div id="System_Info">
             界面宽度:
             <span id="Page_Specification"></span>|
             按下Alt和Ctrl拖动鼠标进行旋转|按下Shift放慢速度|滚动滚轮缩放
         </div>
         <div id="Sence" class="sence">
-            <div id="Box" class="box" onmousedown="Div_Box.Mouse('MouseDown',event)"
-                onmousemove="Div_Box.Mouse('MouseMove',event)" onmousewheel="Div_Box.Mouse('MouseWheel',event)">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+            <div id="Box"></div>
+            <div id="Box2"></div>
         </div>
     </div>
 
