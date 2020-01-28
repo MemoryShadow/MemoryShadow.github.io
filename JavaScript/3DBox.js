@@ -3,11 +3,10 @@ class Class_Box {
     // 数据
     _id = '0';
     _Config = this.getBoxDefaultConfig();
-    // 鼠标是否按下
-    _MouseDown = false;
+    // 鼠标是否按下(如果按下将会标明按下的id)
+    // _MouseDown = false;
     // 记录坐标与计算值(为计算下一次偏移量)
-    _MouseMoveData = { "X": 0, "Y": 0 };
-    _MouseMoveOld_ = { "X": 0, "Y": 0 };
+    // _MouseMoveOld_ = { "X": 0, "Y": 0 };
 
     // 构造器(需要指定要绑定的id)
     constructor(id, { Len = undefined, Color = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
@@ -25,27 +24,24 @@ class Class_Box {
         switch (Info) {
             case 'MouseDown':
                 // 打开鼠标按下标记
-                this._MouseDown = true;
-                // 初始化MouseMoveOld_
-                this._MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
+                Class_Box._MouseDown = this._id;
+                // 初始化MouseMoveOld_(并且记录值)
+                Class_Box._MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
                 break;
             case 'MouseMove':
-                if (this._MouseDown) {
-                    // 计算偏移量
-                    this._MouseMoveData = { "X": ((value ? value.clientX : 0) - this._MouseMoveOld_.X), "Y": ((value ? value.clientY : 0) - this._MouseMoveOld_.Y) };
-                    // 更新位置
-                    this._MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
+                if (Class_Box._MouseDown) {
                     // 更新配置
                     if (value.altKey) {
-                        this.setBoxRotate({ X: this._MouseMoveData.X, Y: this._MouseMoveData.Y });
+                        this.setBoxRotate({ X: Class_Box.getMouseMoveValue().X, Y: Class_Box.getMouseMoveValue().Y });
                     } else if (value.ctrlKey) {
-                        this.setBoxRotate({ Z: this._MouseMoveData.X, Y: this._MouseMoveData.Y });
+                        this.setBoxRotate({ Z: Class_Box.getMouseMoveValue().X, Y: Class_Box.getMouseMoveValue().Y });
                     } else if (value.shiftKey) {
-                        this.setBoxTranslate({ X: this._MouseMoveData.X / 2, Y: this._MouseMoveData.Y / 2 });
+                        this.setBoxTranslate({ X: Class_Box.getMouseMoveValue().X / 2, Y: Class_Box.getMouseMoveValue().Y / 2 });
                     } else {
                         // 默认拖拽事件
-                        this.setBoxTranslate({ X: this._MouseMoveData.X, Y: this._MouseMoveData.Y });
+                        this.setBoxTranslate({ X: Class_Box.getMouseMoveValue().X, Y: Class_Box.getMouseMoveValue().Y });
                     }
+                    Class_Box._MouseMoveOld_ = { "X": (value ? value.clientX : 0), "Y": (value ? value.clientY : 0) };
                 }
                 break;
             case 'MouseWheel':
@@ -62,9 +58,9 @@ class Class_Box {
                 break;
             case 'MouseUp':
                 // 关闭鼠标按下标记
-                this._MouseDown = false;
+                Class_Box._MouseDown = false;
                 // 清空MouseMoveOld_
-                this._MouseMoveOld_ = { "X": 0, "Y": 0 };
+                Class_Box._MouseMoveOld_ = { "X": 0, "Y": 0 };
                 break;
             default:
                 console.log('Not know Data Info: ' + Info + ' is What');
@@ -72,16 +68,11 @@ class Class_Box {
         }
         // Debug打印块
 
-        if (this._MouseDown) {
+        if (Class_Box._MouseDown) {
             console.log(Info + ':' + this._id + (value ? ('[' + value.clientY + ',' + value.clientX + ']') : ''));
             // 检查数据
-            if (this._MouseDown.x > 10 || this._MouseDown.Y > 10) {
-                console.log("value");
-                console.log(value);
-            } else {
-                console.log("MouseMoveData");
-                console.log(this._MouseMoveData);
-            }
+            console.log("MouseMoveData");
+            console.log(Class_Box.getMouseMoveValue());
         }
     }
 
@@ -187,30 +178,55 @@ class Class_Box {
         id_Obj.className = "box";
         // 将新对象按照ID放进BoxList中
         Class_Box.BoxList[id] = new Class_Box(id, { Len: Len, Color: Color, translate_X: translate_X, translate_Y: translate_Y, translate_Z: translate_Z, rotate_X: rotate_X, rotate_Y: rotate_Y, rotate_Z: rotate_Z });
-        id_Obj.onmousedown = function() { Class_Box.MouseDown(this.id); }
-        id_Obj.onmousemove = function() { Class_Box.MouseMove(this.id); }
-        id_Obj.onmousewheel = function() { Class_Box.MouseWheel(this.id); }
-        id_Obj.onmouseup = function() { Class_Box.MouseUp(this.id); }
+        id_Obj.onmousedown = function () { Class_Box.MouseDown(this.id); }
+        id_Obj.onmousemove = function () { Class_Box.MouseMove(this.id); }
+        id_Obj.onmousewheel = function () { Class_Box.MouseWheel(this.id); }
+        id_Obj.onmouseup = function () { Class_Box.MouseUp(this.id); }
     }
 
     // 鼠标释放事件
     static MouseUp(id = undefined) {
         Class_Box._MouseUp = !Class_Box._MouseUp;
-        Class_Box.BoxList[id].Mouse('MouseUp');
+        if (Class_Box._MouseDown) {
+            Class_Box.BoxList[Class_Box._MouseDown].Mouse('MouseUp');
+        }
     }
 
+    // 鼠标移动事件
     static MouseMove(id = undefined) {
-        Class_Box.BoxList[id].Mouse('MouseMove');
+        // 如果没有点击时,就不启动调用
+        if (Class_Box._MouseDown) {
+            Class_Box.BoxList[Class_Box._MouseDown].Mouse('MouseMove');
+        }
     }
 
+    // 鼠标按下事件(如果按下的是正常id,就提交)
     static MouseDown(id = undefined) {
-        Class_Box.BoxList[id].Mouse('MouseDown');
+        // 检测id状态,如果为空就跳过
+        // id = (typeof (id) != "undefined" ? id : Class_Box._MouseDown);
+        // console.log(id);
+        if (typeof (id) != "undefined") {
+            console.log("id为: " + id + " 的盒子,获取了控制权");
+            Class_Box.BoxList[id].Mouse('MouseDown');
+        }
     }
 
+    // 滚轮滚动事件
     static MouseWheel(id = undefined) {
-        Class_Box.BoxList[id].Mouse('MouseWheel')
+        if (typeof (id) != "undefined") {
+            Class_Box.BoxList[id].Mouse('MouseWheel');
+        }
     }
 
+    // 计算鼠标偏移量
+    static getMouseMoveValue(value = event) {
+        // 更新位置
+        var MouseMoveData = {
+            "X": ((value ? value.clientX : 0) - Class_Box._MouseMoveOld_.X),
+            "Y": ((value ? value.clientY : 0) - Class_Box._MouseMoveOld_.Y)
+        };
+        return MouseMoveData;
+    }
 }
 
 // 静态数据
@@ -220,3 +236,7 @@ Class_Box.BoxList = {
 };
 // 鼠标松开属性
 Class_Box._MouseUp = true;
+// 鼠标是否按下(如果按下将会标明按下的控件id)
+Class_Box._MouseDown = false;
+// 记录坐标与计算值(为计算下一次偏移量)
+Class_Box._MouseMoveOld_ = { "X": 0, "Y": 0 };
