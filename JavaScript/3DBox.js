@@ -167,7 +167,7 @@ class Class_Box {
         document.querySelector('#' + this._id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
     }
 
-    // 将指定id的div部署为一个Box,并且按照配置部署好,返回一个此对象的控制模块(必须赋值给先前定义名字的对象)
+    // 将指定id的div部署为一个Box,并且按照配置部署好,并新增控制对象到静态变量BoxList
     static addBoxObject(id, { Len = undefined, Color = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
         // 准备构架DIV
         var id_Obj = document.getElementById(id);
@@ -182,6 +182,17 @@ class Class_Box {
         id_Obj.onmousemove = function () { Class_Box.MouseMove(this.id); }
         id_Obj.onmousewheel = function () { Class_Box.MouseWheel(this.id); }
         id_Obj.onmouseup = function () { Class_Box.MouseUp(this.id); }
+    }
+
+    // 将指定id部署为一个Eye,并且按照配置部署好,用于接收全局以外的事件
+    static setBoxObject_Eye(id) {
+        Class_Box.BoxEye = id;
+        var id_Obj = document.getElementById(id);
+        // 设置样式
+        id_Obj.className = "sence";
+        // 绑定事件
+        id_Obj.onmouseup = Class_Box.MouseUp;
+        id_Obj.onmousemove = Class_Box.MouseMove;
     }
 
     // 鼠标释放事件
@@ -240,3 +251,5 @@ Class_Box._MouseUp = true;
 Class_Box._MouseDown = false;
 // 记录坐标与计算值(为计算下一次偏移量)
 Class_Box._MouseMoveOld_ = { "X": 0, "Y": 0 };
+// 记录眼睛id
+Class_Box.BoxEye = '';

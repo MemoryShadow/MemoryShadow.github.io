@@ -21,6 +21,7 @@
         function Init(event) {
             Class_Box.addBoxObject('Box', { Color: "24dfec", Len: 100 });
             Class_Box.addBoxObject('Box2', { Color: "09b6fa" });
+            Class_Box.setBoxObject_Eye('Sence');
             Page_Specification.innerHTML = (document.body.clientWidth);
         }
 
@@ -29,14 +30,13 @@
 </head>
 
 <body onload="Init(event)">
-    <div style="width: 100%;height: 100%;position:fixed;" onmouseup="Class_Box.MouseUp()"
-        onmousemove="Class_Box.MouseMove()">
+    <div style="width: 100%;height: 100%;position:fixed;">
         <div id="System_Info">
             界面宽度:
             <span id="Page_Specification"></span>|
             按下Alt和Ctrl拖动鼠标进行旋转|按下Shift放慢速度|滚动滚轮缩放
         </div>
-        <div id="Sence" class="sence">
+        <div id="Sence">
             <div id="Box"></div>
             <div id="Box2"></div>
         </div>
