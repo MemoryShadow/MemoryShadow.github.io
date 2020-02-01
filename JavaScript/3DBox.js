@@ -101,15 +101,6 @@ class Class_Box {
                     "background": ""
                 },
             },
-            // 盒子每个面背景(准备抛弃)
-            "BoxBackground": {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": "",
-                "5": "",
-                "6": ""
-            },
             // 盒子移动位置
             "translate3d": {
                 "X": -60,
@@ -184,12 +175,14 @@ class Class_Box {
 
     // 设置背景
     setBackground(index, Value_String) {
-        var Background_Config = this.getBoxInfo()['BoxBackground'];
         // 确保索引在1_6
         if (index > 0 && index < 7) {
-            Background_Config[index] = Value_String;
+            // 获取各个面配置
+            var Background_Config = this.getBoxInfo()['Surface'];
+            // 修改目标数据
+            Background_Config[index]['background'] = Value_String;
             // 将对应的值修改
-            this.setBoxInfo('BoxBackground', Background_Config);
+            this.setBoxInfo('Surface', Background_Config);
         }
     }
 
@@ -208,7 +201,7 @@ class Class_Box {
             document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.backgroundSize = BoxConfigInfo['BoxLen'] + "px " + BoxConfigInfo['BoxLen'] + "px";
             document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.boxShadow =
                 "0 0 " + BoxConfigInfo['BoxShadow']['Blur'] + "px " + BoxConfigInfo['BoxShadow']['Spread'] + "px " + BoxConfigInfo['BoxShadow']['Color'];
-            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.background = BoxConfigInfo['BoxBackground'][index];
+            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.background = BoxConfigInfo['Surface'][index]['background'];
         }
         document.querySelector('#' + this._id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
     }
