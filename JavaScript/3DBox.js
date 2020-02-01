@@ -224,7 +224,9 @@ class Class_Box {
                     // 如果没有img,就创建对象并设置内容
                     var image = Surface_Object.appendChild(document.createElement("img"));
                 }
+                // 阻止图片被拖拽
                 image.draggable = false;
+                // 设置图片
                 image.src = BoxConfigInfo['Surface'][index]['background'];
                 image.style.width = "100%";
                 image.style.height = "100%";
