@@ -3,18 +3,15 @@ class Class_Box {
     // 数据
     _id = '0';
     _Config = this.getBoxDefaultConfig();
-    // 鼠标是否按下(如果按下将会标明按下的id)
-    // _MouseDown = false;
-    // 记录坐标与计算值(为计算下一次偏移量)
-    // _MouseMoveOld_ = { "X": 0, "Y": 0 };
 
     // 构造器(需要指定要绑定的id)
-    constructor(id, { Len = undefined, Color = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
+    constructor(id, { Len = undefined, ShadowColor = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
         // 绑定id
         this._id = id;
         // 对于目标数据进行初始化
+        this.setBoxDefaultConfig();
         this.setBoxLen(Len);
-        this.setBoxColor(Color);
+        this.setBoxShadowColor(ShadowColor);
         this.setBoxTranslate({ X: translate_X, Y: translate_Y, Z: translate_Z });
         this.setBoxRotate({ X: rotate_X, Y: rotate_Y, Z: rotate_Z });
     }
@@ -66,26 +63,60 @@ class Class_Box {
                 console.log('Not know Data Info: ' + Info + ' is What');
                 break;
         }
-        // Debug打印块
-
-        if (Class_Box._MouseDown) {
-            console.log(Info + ':' + this._id + (value ? ('[' + value.clientY + ',' + value.clientX + ']') : ''));
-            // 检查数据
-            console.log("MouseMoveData");
-            console.log(Class_Box.getMouseMoveValue());
-        }
     }
 
     // 盒子默认配置信息储存表
     getBoxDefaultConfig() {
         return {
+            // 盒子的大小
             "BoxLen": 300,
-            "BoxColor": "fff",
+            "BoxShadow": {
+                // 盒子虚化半径
+                "Blur": 30,
+                // 盒子描边
+                "Spread": 5,
+                // 盒子阴影颜色
+                "Color": "#fff",
+                // 盒子阴影颜色过渡色
+                "Inset": "none"
+            },
+            // 盒子每个面的配置
+            "Surface": {
+                "1": {
+                    "background": ""
+                },
+                "2": {
+                    "background": ""
+                },
+                "3": {
+                    "background": ""
+                },
+                "4": {
+                    "background": ""
+                },
+                "5": {
+                    "background": ""
+                },
+                "6": {
+                    "background": ""
+                },
+            },
+            // 盒子每个面背景(准备抛弃)
+            "BoxBackground": {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "6": ""
+            },
+            // 盒子移动位置
             "translate3d": {
                 "X": -60,
                 "Y": 200,
                 "Z": 0
             },
+            // 盒子旋转角度
             "rotate": {
                 "X": 35,
                 "Y": 45,
@@ -96,7 +127,7 @@ class Class_Box {
 
     // 设置盒子数据为默认
     setBoxDefaultConfig() {
-        this.Config = getBoxDefaultConfig();
+        this._Config = this.getBoxDefaultConfig();
         this.RefreshBox();
     }
 
@@ -118,9 +149,11 @@ class Class_Box {
         this.setBoxInfo("BoxLen", Len != undefined ? Len : this.getBoxInfo()['BoxLen']);
     }
 
-    // 设置颜色
-    setBoxColor(Color = undefined) {
-        this.setBoxInfo("BoxColor", Color != undefined ? Color : this.getBoxInfo()['BoxColor']);
+    // 设置阴影颜色
+    setBoxShadowColor(Color = undefined) {
+        var BoxShadow_Config = this.getBoxInfo()['BoxShadow'];
+        BoxShadow_Config['Color'] = Color != undefined ? Color : this.getBoxInfo()['BoxShadow']['Color'];
+        this.setBoxInfo("BoxShadow", BoxShadow_Config);
     }
 
     // 设置位置信息
@@ -149,6 +182,17 @@ class Class_Box {
         this.setBoxInfo('rotate', Temp_NewRotate_Data);
     }
 
+    // 设置背景
+    setBackground(index, Value_String) {
+        var Background_Config = this.getBoxInfo()['BoxBackground'];
+        // 确保索引在1_6
+        if (index > 0 && index < 7) {
+            Background_Config[index] = Value_String;
+            // 将对应的值修改
+            this.setBoxInfo('BoxBackground', Background_Config);
+        }
+    }
+
     // 刷新界面(从配置取读信息然后更新信息)
     RefreshBox() {
         // 取出信息
@@ -162,13 +206,15 @@ class Class_Box {
         // 更新子对象
         for (var index = 1; index <= 6; index++) {
             document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.backgroundSize = BoxConfigInfo['BoxLen'] + "px " + BoxConfigInfo['BoxLen'] + "px";
-            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.boxShadow = "0 0 30px 5px #" + BoxConfigInfo['BoxColor'];
+            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.boxShadow =
+                "0 0 " + BoxConfigInfo['BoxShadow']['Blur'] + "px " + BoxConfigInfo['BoxShadow']['Spread'] + "px " + BoxConfigInfo['BoxShadow']['Color'];
+            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.background = BoxConfigInfo['BoxBackground'][index];
         }
         document.querySelector('#' + this._id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
     }
 
     // 将指定id的div部署为一个Box,并且按照配置部署好,并新增控制对象到静态变量BoxList
-    static addBoxObject(id, { Len = undefined, Color = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
+    static addBoxObject(id, { Len = undefined, ShadowColor = undefined, translate_X = undefined, translate_Y = undefined, translate_Z = undefined, rotate_X = undefined, rotate_Y = undefined, rotate_Z = undefined } = {}) {
         // 准备构架DIV
         var id_Obj = document.getElementById(id);
         for (var index = 1; index <= 6; index++) {
@@ -177,7 +223,7 @@ class Class_Box {
         // 设置DIV
         id_Obj.className = "box";
         // 将新对象按照ID放进BoxList中
-        Class_Box.BoxList[id] = new Class_Box(id, { Len: Len, Color: Color, translate_X: translate_X, translate_Y: translate_Y, translate_Z: translate_Z, rotate_X: rotate_X, rotate_Y: rotate_Y, rotate_Z: rotate_Z });
+        Class_Box.BoxList[id] = new Class_Box(id, { Len: Len, ShadowColor: ShadowColor, translate_X: translate_X, translate_Y: translate_Y, translate_Z: translate_Z, rotate_X: rotate_X, rotate_Y: rotate_Y, rotate_Z: rotate_Z });
         id_Obj.onmousedown = function () { Class_Box.MouseDown(this.id); }
         id_Obj.onmousemove = function () { Class_Box.MouseMove(this.id); }
         id_Obj.onmousewheel = function () { Class_Box.MouseWheel(this.id); }
@@ -213,11 +259,7 @@ class Class_Box {
 
     // 鼠标按下事件(如果按下的是正常id,就提交)
     static MouseDown(id = undefined) {
-        // 检测id状态,如果为空就跳过
-        // id = (typeof (id) != "undefined" ? id : Class_Box._MouseDown);
-        // console.log(id);
         if (typeof (id) != "undefined") {
-            console.log("id为: " + id + " 的盒子,获取了控制权");
             Class_Box.BoxList[id].Mouse('MouseDown');
         }
     }
@@ -238,6 +280,11 @@ class Class_Box {
         };
         return MouseMoveData;
     }
+
+    // 获得指定id的Box对象
+    static getBoxObject(id = undefined) {
+        return Class_Box.BoxList[id];
+    }
 }
 
 // 静态数据
@@ -253,3 +300,5 @@ Class_Box._MouseDown = false;
 Class_Box._MouseMoveOld_ = { "X": 0, "Y": 0 };
 // 记录眼睛id
 Class_Box.BoxEye = '';
+
+console.log("加载类 Class_Box 完成,请确保CSS被正常加载");
