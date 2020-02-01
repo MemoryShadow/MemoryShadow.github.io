@@ -71,11 +71,11 @@ class Class_Box {
             // 盒子的大小
             "BoxLen": 300,
             "BoxShadow": {
-                // 盒子虚化半径
+                // 描边虚化半径
                 "Blur": 30,
                 // 盒子描边
                 "Spread": 5,
-                // 盒子阴影颜色
+                // 盒子描边颜色
                 "Color": "#fff",
                 // 盒子阴影颜色过渡色
                 "Inset": "none"
@@ -140,10 +140,24 @@ class Class_Box {
         this.setBoxInfo("BoxLen", Len != undefined ? Len : this.getBoxInfo()['BoxLen']);
     }
 
-    // 设置阴影颜色
+    // 设置描边颜色
     setBoxShadowColor(Color = undefined) {
         var BoxShadow_Config = this.getBoxInfo()['BoxShadow'];
         BoxShadow_Config['Color'] = Color != undefined ? Color : this.getBoxInfo()['BoxShadow']['Color'];
+        this.setBoxInfo("BoxShadow", BoxShadow_Config);
+    }
+
+    // 设置描边宽度
+    setBoxShadowSpread(Len = undefined) {
+        var BoxShadow_Config = this.getBoxInfo()['BoxShadow'];
+        BoxShadow_Config['Spread'] = Len != undefined ? Len : this.getBoxInfo()['BoxShadow']['Spread'];
+        this.setBoxInfo("BoxShadow", BoxShadow_Config);
+    }
+
+    // 设置描边虚化长度
+    setBoxShadowBlur(Len = undefined) {
+        var BoxShadow_Config = this.getBoxInfo()['BoxShadow'];
+        BoxShadow_Config['Blur'] = Len != undefined ? Len : this.getBoxInfo()['BoxShadow']['Blur'];
         this.setBoxInfo("BoxShadow", BoxShadow_Config);
     }
 
@@ -198,10 +212,23 @@ class Class_Box {
         BoxObject.style.transform = "skew(0deg) translate3d(" + BoxConfigInfo['translate3d']['X'] + "px, " + BoxConfigInfo['translate3d']['Y'] + "px, " + BoxConfigInfo['translate3d']['Z'] + "px) rotateX(" + BoxConfigInfo['rotate']['X'] + "deg) rotateY(" + BoxConfigInfo['rotate']['Y'] + "deg) rotateZ(" + BoxConfigInfo['rotate']['Z'] + "deg)";
         // 更新子对象
         for (var index = 1; index <= 6; index++) {
-            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.backgroundSize = BoxConfigInfo['BoxLen'] + "px " + BoxConfigInfo['BoxLen'] + "px";
-            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.boxShadow =
+            // 面对象
+            var Surface_Object = document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')');
+            Surface_Object.style.boxShadow =
                 "0 0 " + BoxConfigInfo['BoxShadow']['Blur'] + "px " + BoxConfigInfo['BoxShadow']['Spread'] + "px " + BoxConfigInfo['BoxShadow']['Color'];
-            document.querySelector('#' + this._id + ' > div:nth-child(' + index + ')').style.background = BoxConfigInfo['Surface'][index]['background'];
+            // 背景图片设置
+            if (BoxConfigInfo['Surface'][index]['background'] != "") {
+                // 如果不为空,就检查是否有img信息
+                var image = document.querySelector('#' + this._id + ' > div:nth-child(' + index + ') img');
+                if (image === null) {
+                    // 如果没有img,就创建对象并设置内容
+                    var image = Surface_Object.appendChild(document.createElement("img"));
+                }
+                image.draggable = false;
+                image.src = BoxConfigInfo['Surface'][index]['background'];
+                image.style.width = "100%";
+                image.style.height = "100%";
+            }
         }
         document.querySelector('#' + this._id + ' > div:nth-child(6)').style.transform = "translateZ(" + BoxConfigInfo['BoxLen'] + "px)";
     }

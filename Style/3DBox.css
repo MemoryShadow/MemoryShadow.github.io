@@ -31,39 +31,41 @@
     transform-style: preserve-3d;
     box-shadow: 0 0 30px 5px #fff;
     opacity: 0.8;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 /* 下方是方块的组成方案 */
 
 .box div:nth-child(1) {
-    background-size: 300px 300px;
+    background-size: 100% 100%;
     transform-origin: top;
     transform: rotateX(90deg);
 }
 
 .box div:nth-child(2) {
-    background-size: 300px 300px;
+    background-size: 100% 100%;
     transform-origin: left;
     transform: rotateY(-90deg);
 }
 
 .box div:nth-child(3) {
-    background-size: 300px 300px;
+    background-size: 100% 100%;
 }
 
 .box div:nth-child(4) {
-    background-size: 300px 300px;
+    background-size: 100% 100%;
     transform-origin: right;
     transform: rotateY(90deg);
 }
 
 .box div:nth-child(5) {
-    background-size: 300px 300px;
+    background-size: 100% 100%;
     transform-origin: bottom;
     transform: rotateX(-90deg);
 }
 
 .box div:nth-child(6) {
-    background-size: 300px 300px;
-    transform: translateZ(300px);
+    background-size: 100% 100%;
+    transform: translateZ(100%);
 }
