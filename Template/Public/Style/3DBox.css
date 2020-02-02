@@ -35,6 +35,19 @@
     background-repeat: no-repeat;
 }
 
+.box div img {
+    image-rendering: optimizeSpeed;
+    /* Firefox */
+    image-rendering: -moz-crisp-edges;
+    /* Opera */
+    image-rendering: -o-crisp-edges;
+    /* Webkit (non-standard naming) */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    /* IE (non-standard property) */
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
 /* 下方是方块的组成方案 */
 
 .box div:nth-child(1) {
