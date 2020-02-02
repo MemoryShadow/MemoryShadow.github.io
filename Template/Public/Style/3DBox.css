@@ -30,7 +30,7 @@
     border-radius: 5px;
     transform-style: preserve-3d;
     box-shadow: 0 0 30px 5px #fff;
-    opacity: 0.8;
+    opacity: 1;
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
