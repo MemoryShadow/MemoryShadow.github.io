@@ -21,5 +21,5 @@
 # 3DBox
 `此项还正在编辑状态`
 
-这里是关于文件[3DBox.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/3DBox.js "访问源代码")
+这里是关于文件[3DBox.css](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/Style/3DBox.css "访问源代码")
 的详细介绍.
