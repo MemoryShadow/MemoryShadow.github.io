@@ -18,7 +18,7 @@
 
 # 3DBox
 
-您可能有注意到,此页面中只有两个方块和一段提示,除此之外并没有其他内容.
+您可能有注意到,[此页面](https://memoryshadow.github.io/project/3DBox.html "访问实例位置")中只有两个方块和一段提示,除此之外并没有其他内容.
 而这个项目的目的在于向您演示如何调用来自于另一个目录下的公共数据: [Minecraft贴图](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/README.md#Minecraft-Texture "查看描述文件")数据,[方块构成](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/README.md#3DBox "查看描述文件")脚本以及[方块基础样式文件](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/Style/README.md#3DBox "查看描述文件"),使用以下代码,即可迅速构建一个Minecraft方块:
 * JavaScript部分:
 ```JavaScript
