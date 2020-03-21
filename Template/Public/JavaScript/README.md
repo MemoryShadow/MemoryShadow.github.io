@@ -20,7 +20,6 @@
 ****
 
 # 3DBox
-`此项还正在编辑状态`
 
 这里是关于文件[3DBox.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/3DBox.js "访问源代码")
 的详细介绍.
@@ -117,7 +116,15 @@
 
 # Minecraft Texture
 
-`此项还正在编辑状态`
-
 这里是关于文件[MinecraftTexture.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/MinecraftTexture.js "访问源代码")
 的详细介绍.
+
+这里面都是Minecraft的方块贴图,目前截至在1.12.2版本,要使用他们你只要加载它,然后你的全局变量中就会加载数组TextureList,通过TextureList['文件名(不包括后缀)']即可获取base64数据
+
+下面是一个使用示例:
+
+```JavaScript
+data:image/png;base64,' + TextureList['dirt']
+```
+
+* 里面有好多图标,不定期更新到最新版(其实我在等1.16)
