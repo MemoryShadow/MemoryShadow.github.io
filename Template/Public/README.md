@@ -1,4 +1,5 @@
-博客中公用资源描述
+# 博客中公用资源描述
+
 ============================================
 
 >`如果您不知道如何使用博客中那些资源,在对应的目录下应该有对应的内容`
@@ -12,21 +13,21 @@
 
 ****
 
-# 索引
+## 索引
 
 * [JavaScript](#JavaScript)
 * [Style](#Style)
 
 ****
 
-# JavaScript
+## JavaScript
 
 `此项目前正在编辑中`
 
 这里是关于文件夹[JavaScript](https://github.com/MemoryShadow/MemoryShadow.github.io/tree/master/Template/Public/JavaScript "访问目录")
 的详细介绍.
 
-# Style
+## Style
 
 `此项目前正在编辑中`
 

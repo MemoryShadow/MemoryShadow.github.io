@@ -1,4 +1,5 @@
-博客中公用资源描述
+# 博客中公用资源描述
+
 ============================================
 
 >`如果您不知道如何使用博客中那些资源,在对应的目录下应该有对应的内容`
@@ -12,14 +13,14 @@
 
 ****
 
-# 索引
+## 索引
 
 * [3DBox](#3DBox)
 * [Minecraft Texture](#Minecraft-Texture)
 
 ****
 
-# 3DBox
+## 3DBox
 
 这里是关于文件[3DBox.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/3DBox.js "访问源代码")
 的详细介绍.
@@ -70,9 +71,11 @@
   |Class_Box._MouseMoveOld_|记录坐标与计算值|为计算下一次偏移量|
   |Class_Box.BoxEye|记录眼睛div的id||
 
-  ## 配置数据
-  * 以下将会向你展示这个类中每个对象的配置数据格式(Json):
-  ```Json
+### 配置数据
+
+* 以下将会向你展示这个类中每个对象的配置数据格式(Json):
+
+```Json
   {
     "BoxLen": 300,
     "BoxShadow": {
@@ -112,9 +115,9 @@
        "Z": 90
      }
   }
-  ```
+```
 
-# Minecraft Texture
+## Minecraft Texture
 
 这里是关于文件[MinecraftTexture.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/MinecraftTexture.js "访问源代码")
 的详细介绍.
