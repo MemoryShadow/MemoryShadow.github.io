@@ -8,54 +8,54 @@
     <title>墨兮枫的个人博客</title>
     <script>
         function CaiHongPi(id) {
-            var xmlhttp = GetXmlHttp();
-            xmlhttp.onreadystatechange = function () {
+            var XmlHttp = GetXmlHttp();
+            XmlHttp.onreadystatechange = function () {
                 // 当响应达成，并且成功的时候，就修改数据
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById(id).innerHTML = xmlhttp.responseText;
+                if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                    document.getElementById(id).innerHTML = XmlHttp.responseText;
                 }
             }
-            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
-            xmlhttp.send();
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
+            XmlHttp.send();
         }
         function GetErrorMsg(ErrorCode) {
-            var xmlhttp = GetXmlHttp();
-            xmlhttp.onreadystatechange = function () {
+            var XmlHttp = GetXmlHttp();
+            XmlHttp.onreadystatechange = function () {
                 // 当响应达成，并且成功的时候，就修改数据
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById('ErrorCode').value = JSON.parse(xmlhttp.responseText).ErrorCode;
-                    document.getElementById('ErrorText').innerHTML = JSON.parse(xmlhttp.responseText).ErrorText;
-                    document.getElementById('ErrorPrint').innerHTML = JSON.parse(xmlhttp.responseText).ErrorPrint;
-                    document.getElementById('ErrorInfo').innerHTML = xmlhttp.responseText;
+                if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                    document.getElementById('ErrorCode').value = JSON.parse(XmlHttp.responseText).ErrorCode;
+                    document.getElementById('ErrorText').innerHTML = JSON.parse(XmlHttp.responseText).ErrorText;
+                    document.getElementById('ErrorPrint').innerHTML = JSON.parse(XmlHttp.responseText).ErrorPrint;
+                    document.getElementById('ErrorInfo').innerHTML = XmlHttp.responseText;
                 }
             }
-            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
-            xmlhttp.send();
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
+            XmlHttp.send();
         }
         var Data;
         function Translate(Query) {
-            var xmlhttp = GetXmlHttp();
-            xmlhttp.onreadystatechange = function () {
+            var XmlHttp = GetXmlHttp();
+            XmlHttp.onreadystatechange = function () {
                 // 当响应达成，并且成功的时候，就修改数据
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    Data = xmlhttp.responseText;
-                    document.getElementById('TranslateResult').innerHTML = JSON.parse(xmlhttp.responseText).sentences[0].trans;
-                    document.getElementById('TranslateResultSource').innerHTML = xmlhttp.responseText;
+                if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                    Data = XmlHttp.responseText;
+                    document.getElementById('TranslateResult').innerHTML = JSON.parse(XmlHttp.responseText).sentences[0].trans;
+                    document.getElementById('TranslateResultSource').innerHTML = XmlHttp.responseText;
                 }
             }
-            xmlhttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=Translate&Query=" + Query, true);
-            xmlhttp.send();
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=Translate&Query=" + Query, true);
+            XmlHttp.send();
         }
         function GetXmlHttp() {
-            var xmlhttp;
-            if (window.XMLHttpRequest) {
+            var XmlHttp;
+            if (window.XmlHttpRequest) {
                 //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                xmlhttp = new XMLHttpRequest();
+                XmlHttp = new XmlHttpRequest();
             } else {
                 // IE6, IE5 浏览器执行代码
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                XmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
-            return xmlhttp;
+            return XmlHttp;
         }
         function Init() {
             CaiHongPi('CaiHongPi');
