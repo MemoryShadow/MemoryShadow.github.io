@@ -29,11 +29,11 @@
 
 ## 撰写进度
 
-- [x] [开始游戏前的准备](#开始游戏前的准备 "我要开动啦")
-- [ ] 开始游戏[0/4]
-- [ ] 资料从哪里找[0/2]
-- [ ] 我们玩的真的是同一个游戏吗?[0/2]
-- [ ] 多人游戏?[0/2]
+* [x] [开始游戏前的准备](#开始游戏前的准备 "我要开动啦")
+* [ ] 开始游戏[0/4]
+* [ ] 资料从哪里找[0/2]
+* [ ] 我们玩的真的是同一个游戏吗?[0/2]
+* [ ] 多人游戏?[0/2]
 
 ****
 
@@ -58,15 +58,14 @@ Java其实是两个部分,由 Java Runtime Environment(JRE)和Java Development K
 
 在官网下载需要登录,而由于不可描述的原因,在国内下载会奇慢甚至无法下载,所以我在这里提供了百度网盘链接和蓝奏云链接:
 
-  * [官网JRE 8地址](https://www.oracle.com/java/technologies/javase-jre8-downloads.html "点击前往")
-  * [百度网盘地址](https://pan.baidu.com/s/1UvUyp7YLBm5aVKO69ANGdg "点击前往")提取码：pcuu
-  * [蓝奏云地址](https://www.lanzous.com/b015ahjha?t=2303 "点击前往")
+* [官网JRE 8地址](https://www.oracle.com/java/technologies/javase-jre8-downloads.html "点击前往")
+* [百度网盘地址](https://pan.baidu.com/s/1UvUyp7YLBm5aVKO69ANGdg "点击前往")提取码：pcuu
+* [蓝奏云地址](https://www.lanzous.com/b015ahjha?t=2303 "点击前往")
 
 选择适合你计算机的版本[下载](https://xdown.org/ "高效下载工具").
 
->什么?你问我为什么没有Linux等其他系统版本的?我不信你一个Linux玩家会卡在下载Java这一步.
-
->苹果请移步应用商店(给你安装包也不一定能安装成功)
+>什么?你问我为什么没有Linux等其他系统版本的?我不信你一个Linux玩家会卡在下载Java这一步.<br>
+苹果请移步应用商店(给你安装包也不一定能安装成功)
 
 在下载了安装包后,就是我们的正题\:[安装](https://jingyan.baidu.com/article/0eb457e5ece76f03f1a905a2.html "安装教程")了
 
