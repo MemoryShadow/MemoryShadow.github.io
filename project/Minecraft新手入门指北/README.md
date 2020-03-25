@@ -30,7 +30,7 @@
 ## 撰写进度
 
 * [x] [开始游戏前的准备](#开始游戏前的准备 "我要开动啦")
-* [ ] 开始游戏[2/4]
+* [ ] [开始游戏](#开始游戏 "欣赏这光怪陆离的世界")[2/4]
 * [ ] 资料从哪里找[0/2]
 * [ ] 我们玩的真的是同一个游戏吗?[0/2]
 * [ ] 多人游戏?[0/2]
@@ -95,11 +95,16 @@ Java安装完成后,就要准备一个Minecraft的启动器了.如果你直接�
 
 那么在下面,是启动器(们)的下载地址:
 
-* [官方启动器下载地址](https://www.minecraft.net/zh-hans/download/ "点击访问")
-  * [Windows版本](https://launcher.mojang.com/download/MinecraftInstaller.msi "点击下载")
+* [官方启动器下载地址](https://www.minecraft.net/zh-hans/download/alternative "点击访问")
+  * [Windows(在线)](https://launcher.mojang.com/download/MinecraftInstaller.msi "点击下载")
+  * [Windows](https://launcher.mojang.com/download/Minecraft.exe "点击下载")
+  * [Mac](https://launcher.mojang.com/download/Minecraft.dmg "点击下载")
+  * [Debian/Ubuntu](https://launcher.mojang.com/download/Minecraft.deb "点击下载")
+  * [Arch Linux](https://aur.archlinux.org/packages/minecraft-launcher "点击访问")
+  * [其他Linux](https://launcher.mojang.com/download/Minecraft.tar.gz "点击下载\(要提前安装Java 8\)")
 * [HMCL(国内做的比较棒的一款启动器)](https://hmcl.huangyuhui.net/download "点击访问")
-  * [Windows版本(稳定版\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.exe "点击下载")
-  * [Jre版本(近乎在任何操作系统上都能用\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.jar "点击下载")
+  * [Windows(稳定版\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.exe "点击下载")
+  * [Jre(近乎在任何操作系统上都能用\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.jar "点击下载")
   * [开源地址](https://github.com/huanghongxun/HMCL "点击访问")
   
 `更多启动器还在收录过程中,已停更启动器不会出现在此列表`
