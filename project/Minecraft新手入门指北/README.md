@@ -102,6 +102,7 @@ Java安装完成后,就要准备一个Minecraft的启动器了.如果你直接�
   * [Debian/Ubuntu](https://launcher.mojang.com/download/Minecraft.deb "点击下载")
   * [Arch Linux](https://aur.archlinux.org/packages/minecraft-launcher "点击访问")
   * [其他Linux](https://launcher.mojang.com/download/Minecraft.tar.gz "点击下载\(要提前安装Java 8\)")
+  >如您所知，在此页面下载上方列表软件，即表示您同意 [Minecraft 最终用户许可协议](https://minecraft.net/terms)和[隐私政策](https://go.microsoft.com/fwlink/?LinkId=521839)。
 * [HMCL(国内做的比较棒的一款启动器)](https://hmcl.huangyuhui.net/download "点击访问")
   * [Windows(稳定版\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.exe "点击下载")
   * [Jre(近乎在任何操作系统上都能用\[149\])](http://ci.huangyuhui.net/job/HMCL/149/artifact/HMCL/build/libs/HMCL-3.2.149.jar "点击下载")
