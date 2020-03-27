@@ -13,10 +13,11 @@
 # 索引
 
 * [3DBox](#3DBox)
+* [Minecraft新手入门指北](#Minecraft新手入门指北)
 
 ****
 
-# 3DBox
+## 3DBox
 
 您可能有注意到,[此页面](https://memoryshadow.github.io/project/3DBox.html "访问实例位置")中只有两个方块和一段提示,除此之外并没有其他内容.
 而这个项目的目的在于向您演示如何调用来自于另一个目录下的公共数据: [Minecraft贴图](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/README.md#Minecraft-Texture "查看描述文件")数据,[方块构成](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/README.md#3DBox "查看描述文件")脚本以及[方块基础样式文件](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/Style/README.md#3DBox "查看描述文件"),使用以下代码,即可迅速构建一个Minecraft方块:
@@ -51,4 +52,10 @@ for (let Box_index = 1; Box_index <= 6; Box_index++) {
 <div id="Sence">
   <div id="Box"></div>
 </div>
+...
 ```
+## Minecraft新手入门指北
+
+这个项目是一个单纯的介绍文件,如题所述,这是一份Minecraft新手入门指~南~北,里面详细的撰述了如何从新手变成一个菜鸡的升级指南~话说这有什么区别吗~
+
+如果刚进入Minecraft,不知道为什么自己的游戏界面总是和其他人有差异,或者更萌新一点,就来阅读这篇文章吧,如果可以解决你长久以来的疑惑或者碍于面子不想去问某人的问题,那我荣幸至极.
