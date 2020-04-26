@@ -18,6 +18,7 @@
     transform-origin: center center 75px;
     margin: auto;
     transform: skew(0deg) translate3d(-60px, 200px, 0px) rotateX(35deg) rotateY(45deg) rotateZ(90deg);
+    cursor: move;
     /* transition: all 1s; */
 }
 
