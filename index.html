@@ -1,3 +1,10 @@
+<!--
+ * @Date: 2019-12-31 19:21:38
+ * @Author: MemoryShadow
+ * @LastEditors: MemoryShadow
+ * @LastEditTime: 2020-07-01 16:02:01
+ * @Effect: Do not edit
+-->
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -15,7 +22,7 @@
                     document.getElementById(id).innerHTML = XmlHttp.responseText;
                 }
             }
-            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=CaiHongPi", true);
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=CaiHongPi", true);
             XmlHttp.send();
         }
         function GetErrorMsg(ErrorCode) {
@@ -29,7 +36,7 @@
                     document.getElementById('ErrorInfo').innerHTML = XmlHttp.responseText;
                 }
             }
-            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=ErrorMsg&ErrorCode=" + ErrorCode, true);
             XmlHttp.send();
         }
         var Data;
@@ -43,7 +50,7 @@
                     document.getElementById('TranslateResultSource').innerHTML = XmlHttp.responseText;
                 }
             }
-            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=ajax&Function=Translate&Query=" + Query, true);
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=Translate&Query=" + Query, true);
             XmlHttp.send();
         }
         function GetXmlHttp() {
