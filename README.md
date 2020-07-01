@@ -15,7 +15,14 @@
 ## 索引
 
 * [API](#API "点击前往")
+  * [彩虹屁接口调用](#彩虹屁 "点击前往")
+  * [ErrorMsg](#ErrorMsg "点击前往")
+  * [Google Translate API](#Google-Translate-API "点击前往")
+  * [Captcha](#Captcha "点击前往")
+    * [获取验证码](#Get-Captcha "点击前往")
+    * [核对验证码](#Confirm-Captcha "点击前往")
 * [项目](#Projects "点击前往")
+  * [3DBox](#3DBox "点击前往")
 
 ## API
 
