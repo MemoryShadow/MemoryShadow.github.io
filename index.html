@@ -2,7 +2,7 @@
  * @Date: 2019-12-31 19:21:38
  * @Author: MemoryShadow
  * @LastEditors: MemoryShadow
- * @LastEditTime: 2020-07-01 16:02:01
+ * @LastEditTime: 2020-07-01 16:39:14
  * @Effect: Do not edit
 -->
 <!DOCTYPE html>
@@ -53,6 +53,37 @@
             XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=Translate&Query=" + Query, true);
             XmlHttp.send();
         }
+        function Get_CaptchaData(Id) {
+            var XmlHttp = GetXmlHttp();
+            XmlHttp.onreadystatechange = function () {
+                // 当响应达成，并且成功的时候，就修改数据
+                if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                    Data = XmlHttp.responseText;
+                    document.getElementById(Id).Token = JSON.parse(XmlHttp.responseText).Token;
+                    document.getElementById(Id).src = "data:image/png;base64," + JSON.parse(XmlHttp.responseText).CaptchaImgValue;
+                }
+            }
+            XmlHttp.open("GET", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=Captcha&OperateMode=GetData&DataType=Json", true);
+            XmlHttp.send();
+        }
+
+        function Post_CaptchaData(Id, InputValue) {
+            var XmlHttp = GetXmlHttp();
+            XmlHttp.onreadystatechange = function () {
+                // 当响应达成，并且成功的时候，就修改数据
+                if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                    Data = XmlHttp.responseText;
+                    document.getElementById('Result').innerHTML = (XmlHttp.responseText == "False") ? "验证失败,验证码无效或发生错误" : "验证成功,验证码有效";
+                    // 并且在响应后刷新验证码
+                    Get_CaptchaData('CaptchaImg');
+                }
+            }
+            XmlHttp.open("POST", "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/?Mode=Ajax&Function=Captcha&OperateMode=SubmitData&SubmitType=ConfirmCaptcha", true);
+            XmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            XmlHttp.send("Token=" + document.getElementById(Id).Token + "&InputValue=" + InputValue);
+            document.getElementById(Id).placeholder = InputValue;
+            document.getElementById(Id).value = "";
+        }
         function GetXmlHttp() {
             var XmlHttp;
             if (window.XMLHttpRequest) {
@@ -68,14 +99,14 @@
             CaiHongPi('CaiHongPi');
             GetErrorMsg(ErrorCode.value);
             Translate(TranslateSource.value);
+            Get_CaptchaData('CaptchaImg');
         }
     </script>
 </head>
 
 <body onload="Init()">
-    <a href="https://www.baidu.com">打开百度</a>
     <a href="https://github.com/MemoryShadow/MemoryShadow.github.io">打开项目页面</a>
-    <a href="https://MemoryShadow.freetzi.com">打开支柱官网</a>
+    <a href="https://MemoryShadow.freetzi.com">打开支持官网</a>
     <br />
     <hr width="100%" size="1" />
     <h3>彩虹屁接口调用示例(感谢<a href="https://shadiao.app/">沙雕APP</a>)<button onclick="CaiHongPi('CaiHongPi');">
@@ -101,6 +132,14 @@
     <span id="TranslateResult"></span><br />
     返回具体内容:
     <span id="TranslateResultSource"></span><br />
+    <hr width="100%" size="1" />
+    <h3>验证码功能示例</h3>
+    <img height="40px" width="120px" id="CaptchaImg" onclick="Get_CaptchaData('CaptchaImg')" />
+    <br />
+    <input type="text" value=""
+        onblur="this.placeholder = this.value;this.value = '';Post_CaptchaData('CaptchaImg', this.placeholder);" />
+    <br />
+    <span id="Result"></span>
     <hr width="100%" size="1" />
 </body>
 
