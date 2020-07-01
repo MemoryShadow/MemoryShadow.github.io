@@ -97,8 +97,8 @@ Google Translate,全球最好的翻译平台,许多人在尝试调用它的API�
 
 这个功能实现了一个完整的验证码功能,一共有两个接口,我来为您一一阐述.
 
-* [获取验证码](#GetCaptcha "点击前往")
-* [核对验证码](#ConfirmCaptcha "点击前往")
+* [获取验证码](#Get-Captcha "点击前往")
+* [核对验证码](#Confirm-Captcha "点击前往")
 
 #### Get Captcha
 
@@ -130,11 +130,11 @@ Google Translate,全球最好的翻译平台,许多人在尝试调用它的API�
 
 * 注意：使用Ajax时需要联系我授权域名,否则可能会因为用户浏览器的默认设置,请求会被拦截
 
-|类型|项名|内容|备注|
-|---|---|---|---
-|POST参数|Token|要核对的验证码令牌|
-|POST参数|InputValue|用户输入的验证码值|
-|返回|格式|字符串`True`或是`False`|
+|类型|项名|内容
+|---|---|---
+|POST参数|Token|要核对的验证码令牌
+|POST参数|InputValue|用户输入的验证码值
+|返回|格式|字符串`True`或是`False`
 
 ## Projects
 
