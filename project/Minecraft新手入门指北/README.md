@@ -8,6 +8,12 @@
 
 ****
 
+`这份指北是针对于Minecraft:Java版本的,如果需要有关Minecraft:Bedrock Edition的信息,请点击下方的链接`
+
+## Minecraft:Bedrock Edition
+
+* [Android](http://mc.oi.sgpublic.xyz/ "点击前往")
+
 ## 目录
 
 * [开始游戏前的准备](#开始游戏前的准备 "我要开动啦")
