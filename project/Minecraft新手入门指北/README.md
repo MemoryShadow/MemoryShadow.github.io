@@ -8,7 +8,7 @@
 
 ****
 
-`这份指北是针对于Minecraft:Java版本的,如果需要有关Minecraft:Bedrock Edition的信息,请点击下方的链接`
+`这份指北是针对于Minecraft: Java Edition版本的,如果需要有关Minecraft:Bedrock Edition的信息,请点击下方的链接`
 
 ## Minecraft:Bedrock Edition
 
