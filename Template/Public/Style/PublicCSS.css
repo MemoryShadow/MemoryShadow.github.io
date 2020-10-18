@@ -2,7 +2,7 @@
  * @Date         : 2020-10-18 10:52:43
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2020-10-18 18:04:45
+ * @LastEditTime : 2020-10-18 18:09:56
  * @Description  : 基础组件css样式
  */
 
@@ -76,7 +76,7 @@ div.title div.ButtonList.enable a, div#top div.ButtonList.enable a, div.title di
     flex-grow: 1;
 }
 
-div.bottom {
+div#bottom {
     position: fixed;
     bottom: 0px;
 }
