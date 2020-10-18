@@ -2,22 +2,33 @@
  * @Date         : 2020-10-18 10:52:43
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2020-10-18 16:33:44
+ * @LastEditTime : 2020-10-18 17:41:47
  * @Description  : 基础组件css样式
  */
 
 html.blue {
-    background: linear-gradient(rgb(158, 215, 250) 0%, #FFFFFF 30px);
+    background: linear-gradient(rgb(158, 215, 250) 0%, #FFFFFF 28px);
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
 }
 
-div.title {
+div.title, div#top {
     display: flex;
+    flex-direction: row;
 }
 
-a.button {
+div.title div, div#top div {
+    display: flex;
+    flex-direction: column;
+}
+
+div.title div div, div#top div div {
+    display: flex;
+    flex-direction: row;
+}
+
+a.button, div.title div.ButtonList.enable a, div#top div.ButtonList.enable a {
     display: flex;
     height: 30px;
     width: 80px;
@@ -30,21 +41,37 @@ a.button {
     margin: 10px;
 }
 
-a.button.enable {
+a.button.enable, div.title div.ButtonList.enable a, div#top div.ButtonList.enable a {
     text-decoration: none;
     background-color: #4E71F2;
     color: #FFF;
 }
 
-a.button.enable:hover {
+a.button.disable, div.title div.ButtonList.disable a, div#top div.ButtonList.disable a {
+    text-decoration: line-through;
+    background-color: #4d4d4d;
+    color: #FFF;
+    pointer-events: none;
+}
+
+a.button.enable:hover, div.title div.ButtonList.enable a:hover, div#top div.ButtonList.enable a:hover {
     text-decoration: none;
     background-color: #6c89f3;
     color: #FFF;
 }
 
-a.button.disable {
-    text-decoration: line-through;
-    background-color: #4d4d4d;
-    color: #FFF;
-    pointer-events: none;
+div.title div.ButtonList, div#top div.ButtonList {
+    background-color: #4E71F2;
+    margin: 10px;
+}
+
+div.title div.ButtonList.enable a, div#top div.ButtonList.enable a, div.title div.ButtonList.disable a, div#top div.ButtonList.disable a {
+    border-radius: 0px;
+    -moz-box-shadow: 0px 0px 0px #FFF;
+    -webkit-box-shadow: 0px 0px 0px #FFF;
+    box-shadow: 0px 0px 0px #FFF;
+    border-right: solid 1px #FFF;
+    margin: 0px;
+    padding: 4px 10px;
+    flex-grow: 1;
 }
