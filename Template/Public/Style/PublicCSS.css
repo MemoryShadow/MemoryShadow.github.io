@@ -2,7 +2,7 @@
  * @Date         : 2020-10-18 10:52:43
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2020-10-18 18:09:56
+ * @LastEditTime : 2020-10-18 18:14:15
  * @Description  : 基础组件css样式
  */
 
@@ -78,5 +78,7 @@ div.title div.ButtonList.enable a, div#top div.ButtonList.enable a, div.title di
 
 div#bottom {
     position: fixed;
-    bottom: 0px;
+    bottom: 1px;
+    left: 0px;
+    width: 100%;
 }
