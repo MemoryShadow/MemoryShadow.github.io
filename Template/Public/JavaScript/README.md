@@ -280,7 +280,7 @@ data:image/png;base64,' + TextureList['dirt']
 
 |方法名|方法用途|返回值|
 |---|---|---|
-|[_GET](#ToolsGET)|解析当前页面中由GET方法传递过来的值|Array|
+|[_GET](#Tools_GET)|解析当前页面中由GET方法传递过来的值|Array|
 |[GetXmlHttp](#ToolsGetXmlHttp)|取得一个Ajax对象|Object|
 |[Ajax](#ToolsAjax)|发送一次Ajax请求|void|
 
