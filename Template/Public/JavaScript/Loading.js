@@ -2,7 +2,7 @@
  * @Date         : 2020-12-25 20:36:22
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2020-12-25 23:14:05
+ * @LastEditTime : 2020-12-26 18:01:16
  * @Description  : 创建一个正在加载的界面
  */
 
@@ -77,19 +77,17 @@ function Loading_Control(ID) {
     // 设置最大进度
     this.setSchedule = function (Percentage) {
         this.Schedule = Percentage;
+        return this;
     }
     // 将百分比数值转换为开源用于显示的数值
     this.PercentageValue2ShowValue = function (params) {
         switch (params) {
             case 100:
                 return 2;
-                break;
             case 0:
                 return 0;
-                break;
             default:
                 return (100 - params) / 100 * 2;
-                break;
         }
     }
     // 渲染
@@ -116,12 +114,14 @@ function Loading_Control(ID) {
         this.startID = setInterval(function (ID) {
             Loading_Control.indexOf(ID).Refresh();
         }, 50, this.canvasIndex);
+        return this;
     }
     // 停止
     this.stop = function (e) {
         this.ClickFlag = -1;
         clearInterval(this.startID);
         this.startID = 0;
+        return this;
     }
     // 设置事件接收器
     this.onClick = function (value) {
@@ -129,7 +129,6 @@ function Loading_Control(ID) {
         if (value === false) {
             this.ClickFlag = 0;
             this.loading_canvas.onclick = null;
-            return true;
         } else {
             // 就检测值,如果此时为负数就执行start,如果此时为正数,就执行stop
             // 重新设置监听器
@@ -138,6 +137,7 @@ function Loading_Control(ID) {
             };
             this.ClickFlag < 0 ? this.start() : this.stop();
         }
+        return this;
     }
     // 执行代码
     return this.Init(ID);

@@ -16,7 +16,9 @@
 ## 索引
 
 * [3DBox](#3DBox)
+* [Loading](#Loading)
 * [Minecraft Texture](#Minecraft-Texture)
+* [Tools](#Tools)
 
 ****
 
@@ -117,6 +119,133 @@
   }
 ```
 
+## Loading
+
+这里是关于文件[Loading.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/Loading.js "访问源代码")
+的详细介绍.
+
+此文件包含了一个类`Loading_Control`,该类接受以下参数作为构造器:
+
+|参数|类型|描述|用途|
+|---|---|---|---
+|ID|string|要作为加载控件的`canvas`节点ID|通过此ID,将会将指定的节点设为`Loading`等待控件|
+
+此类还有一些预设的成员:
+
+|成员类型|成员名|表达式类型|用途/功能|
+|---|---|---|---|
+|属性|loading_canvas|Object|储存了指定`canvas`节点的**控制**对象|
+|属性|ctx|Object|储存了指定`canvas`节点的**绘制**对象|
+|属性|Schedule|Number|储存了可以表达的最大百分比|
+|属性|startID|String|储存了周期任务的任务ID|
+|属性|canvasID|String|储存了指定`canvas`的ID|
+|属性|canvasIndex|Number|指明自身在内部维护的储存库中的编号|
+|属性|ClickFlag|Number|控件动画播放的状态|
+|方法|[Init_CTX](#Loading.Init_CTX "详细信息")|Object|初始化内部的绘图对象`ctx`,返回`this.ctx`|
+|方法|[Init](#Loading.Init "详细信息")|Object|初始化自身,会自动调用`this.Init_CTX`,返回`this`|
+|方法|[setSchedule](#Loading.setSchedule "详细信息")|Object|直接设定`Schedule`的值,返回`this`|
+|方法|[PercentageValue2ShowValue](#Loading.PercentageValue2ShowValue "详细信息")|Number|将百分比的值转换为用于显示的值|
+|方法|[Refresh](#Loading.Refresh "详细信息")|void|根据配置渲染页面|
+|方法|[start](#Loading.start "详细信息")|Object|开始动画,返回`this`|
+|方法|[stop](#Loading.stop "详细信息")|Object|停止动画,返回`this`|
+|方法|[onClick](#Loading.onClick "详细信息")|Object|如果传参为非`false`就认为是开启点击事件响应功能,返回`this`|
+|静态方法|[indexOf](#Loading.static-indexOf "详细信息")|Object|取得指定的`Loading_Control`对象|
+
+### Loading.Init_CTX
+
+>初始化内部的绘图对象`ctx`
+
+* 返回值:`canvas`绘制控制对象
+
+### Loading.Init
+
+>初始化自身,会自动调用`this.Init_CTX`
+
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|ID|String|要指定的控件ID|
+
+* 返回值:所在对象自身
+
+### Loading.setSchedule
+
+>直接设定`Schedule`的值
+
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|Percentage|Number|要设定的最大进度|
+
+* 返回值:所在对象自身
+
+### Loading.PercentageValue2ShowValue
+
+>将百分比的值转换为用于显示的系数
+
+* 返回值:用于显示的公式系数之一,在内部参与运算
+
+### Loading.Refresh
+
+>根据配置渲染页面
+
+* 返回值:无返回值
+
+### Loading.start
+
+>开始动画
+
+* 返回值:所在对象自身
+
+### Loading.stop
+
+>停止动画
+
+* 返回值:所在对象自身
+
+### Loading.onClick
+
+>如果传参为非`false`就认为是开启点击事件响应功能
+
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|value|Boolean|如果传入`false`,将会关闭此事件监听器,反之`true`就是打开|
+
+* 返回值:所在对象自身
+
+### Loading.static-indexOf
+
+>取得指定的`Loading_Control`对象
+
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|index|Number/String|依据指定的索引编号或者`canvas`节点的ID,返回对应的`Loading_Control`对象|
+
+* 返回值:指定的对象
+
+### Loading 示例
+
+HTML:
+
+```HTML
+...
+<canvas id="loading_canvas">
+    Your browser does not support the canvas element.
+</canvas>
+...
+```
+
+JavaScript:
+
+```JavaScript
+...
+var loading_Control = new Loading_Control("loading_canvas");
+loading_Control.setSchedule(95).onClick(true).start();
+...
+```
+
 ## Minecraft Texture
 
 这里是关于文件[MinecraftTexture.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/MinecraftTexture.js "访问源代码")
@@ -131,3 +260,8 @@ data:image/png;base64,' + TextureList['dirt']
 ```
 
 * 里面有好多图标,不定期更新到最新版(其实我在等1.16)
+
+## Tools
+
+这里是关于文件[Tools.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/Tools.js "访问源代码")
+的详细介绍.
