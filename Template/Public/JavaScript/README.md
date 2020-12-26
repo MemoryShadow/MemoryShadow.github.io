@@ -141,20 +141,21 @@
 |属性|canvasID|String|储存了指定`canvas`的ID|
 |属性|canvasIndex|Number|指明自身在内部维护的储存库中的编号|
 |属性|ClickFlag|Number|控件动画播放的状态|
-|方法|[Init_CTX](#Loading.Init_CTX "详细信息")|Object|初始化内部的绘图对象`ctx`,返回`this.ctx`|
-|方法|[Init](#Loading.Init "详细信息")|Object|初始化自身,会自动调用`this.Init_CTX`,返回`this`|
-|方法|[setSchedule](#Loading.setSchedule "详细信息")|Object|直接设定`Schedule`的值,返回`this`|
-|方法|[PercentageValue2ShowValue](#Loading.PercentageValue2ShowValue "详细信息")|Number|将百分比的值转换为用于显示的值|
-|方法|[Refresh](#Loading.Refresh "详细信息")|void|根据配置渲染页面|
-|方法|[start](#Loading.start "详细信息")|Object|开始动画,返回`this`|
-|方法|[stop](#Loading.stop "详细信息")|Object|停止动画,返回`this`|
-|方法|[onClick](#Loading.onClick "详细信息")|Object|如果传参为非`false`就认为是开启点击事件响应功能,返回`this`|
-|静态方法|[indexOf](#Loading.static-indexOf "详细信息")|Object|取得指定的`Loading_Control`对象|
+|方法|[Init_CTX](#LoadingInit_CTX "详细信息")|Object|初始化内部的绘图对象`ctx`,返回`this.ctx`|
+|方法|[Init](#LoadingInit "详细信息")|Object|初始化自身,会自动调用`this.Init_CTX`,返回`this`|
+|方法|[setSchedule](#LoadingsetSchedule "详细信息")|Object|直接设定`Schedule`的值,返回`this`|
+|方法|[PercentageValue2ShowValue](#LoadingPercentageValue2ShowValue "详细信息")|Number|将百分比的值转换为用于显示的值|
+|方法|[Refresh](#LoadingRefresh "详细信息")|void|根据配置渲染页面|
+|方法|[start](#Loadingstart "详细信息")|Object|开始动画,返回`this`|
+|方法|[stop](#Loadingstop "详细信息")|Object|停止动画,返回`this`|
+|方法|[onClick](#LoadingonClick "详细信息")|Object|如果传参为非`false`就认为是开启点击事件响应功能,返回`this`|
+|静态方法|[indexOf](#Loadingstatic-indexOf "详细信息")|Object|取得指定的`Loading_Control`对象|
 
 ### Loading.Init_CTX
 
 >初始化内部的绘图对象`ctx`
 
+* 参数:无
 * 返回值:`canvas`绘制控制对象
 
 ### Loading.Init
@@ -183,24 +184,32 @@
 
 >将百分比的值转换为用于显示的系数
 
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|params|Number|要转换的数值|
+
 * 返回值:用于显示的公式系数之一,在内部参与运算
 
 ### Loading.Refresh
 
 >根据配置渲染页面
 
+* 参数:无
 * 返回值:无返回值
 
 ### Loading.start
 
 >开始动画
 
+* 参数:无
 * 返回值:所在对象自身
 
 ### Loading.stop
 
 >停止动画
 
+* 参数:无
 * 返回值:所在对象自身
 
 ### Loading.onClick
@@ -224,6 +233,7 @@
 |index|Number/String|依据指定的索引编号或者`canvas`节点的ID,返回对应的`Loading_Control`对象|
 
 * 返回值:指定的对象
+* 错误返回值:undefined
 
 ### Loading 示例
 
@@ -265,3 +275,60 @@ data:image/png;base64,' + TextureList['dirt']
 
 这里是关于文件[Tools.js](https://github.com/MemoryShadow/MemoryShadow.github.io/blob/master/Template/Public/JavaScript/Tools.js "访问源代码")
 的详细介绍.
+
+该文件有以下方法:
+
+|方法名|方法用途|返回值|
+|---|---|---|
+|[_GET](#ToolsGET)|解析当前页面中由GET方法传递过来的值|Array|
+|[GetXmlHttp](#ToolsGetXmlHttp)|取得一个Ajax对象|Object|
+|[Ajax](#ToolsAjax)|发送一次Ajax请求|void|
+
+### Tools._GET
+
+>解析当前页面中由GET方法传递过来的值
+
+* 参数:无
+* 返回值:一个数组,其值由GET方法提交的键名,或者提交的顺序(Number)来索引获得
+
+### Tools.GetXmlHttp
+
+>取得一个Ajax对象
+
+* 参数:无
+* 返回值:一个`XMLHttpRequest`对象
+
+### Tools.Ajax
+
+>发送一次Ajax请求
+
+参数列表:  
+|参数名|参数类型|参数描述|
+|---|---|---|
+|method|String|指定参数发送的方法,只接受GET和POST|
+|Url|String|指定要请求的页面URL|
+|search|String|请求的参数,不同字段之间使用&符进行分隔|
+|method|callback|回调函数,参数1将会传入一个`XMLHttpRequest`对象|
+
+* 返回值:无
+
+方法示例:
+
+```JavaScript
+/** 
+ * 获取一条彩虹屁
+ * @param {String} id 要盛放返回值的HTML节点ID
+*/
+function CaiHongPi(id) {
+    Ajax("GET",
+        "https://memoryshadow.freetzi.com/Template/Public/ToolAPI/",
+        "Mode=Ajax&Function=CaiHongPi",
+        function (XmlHttp) {
+            // 当响应达成，并且成功的时候，就修改数据
+            if (XmlHttp.readyState == 4 && XmlHttp.status == 200) {
+                document.getElementById(id).innerHTML = XmlHttp.responseText;
+            }
+        }
+    );
+}
+```
