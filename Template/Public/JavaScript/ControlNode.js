@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-29 10:13:23
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2021-01-07 13:07:51
+ * @LastEditTime : 2021-01-08 00:32:42
  * @Effect: 内置类ControlNode,用于控制节点,并包含一些内置的控件,可以快速创建
  * //!注:此类未完全完成,请勿用于生产环境
  */
@@ -110,7 +110,7 @@ function ControlNode(MainNodeID) {
             case 'string':
                 for (var index = 0; index < this.length(); index++) {
                     var Node = this.Node_Data_List[index];
-                    if (Node.id == Key) {
+                    if (Node.id === Key) {
                         return Node;
                     }
                 }
@@ -252,7 +252,7 @@ ControlNode.getInputNode = function (NodeDataType, Value, Candidate, isDisable) 
 }
 
 /**
- * 获取一个指定样式的输入框
+ * 获取一个指定样式的按钮
  * @param {String} NodeDataType 节点数据类型,以下是支持的值
  * [default: 默认形式, link: 链接形式]
  * @param {String} Value 按钮的显示内容
@@ -262,23 +262,27 @@ ControlNode.getInputNode = function (NodeDataType, Value, Candidate, isDisable) 
  * @return {JSON} 此输入控件的描述JSON对象
  */
 ControlNode.getButtonNode = function (NodeDataType, Value, onClick, isDisable) {
+    let NodeObj = {};
     switch (NodeDataType) {
         case 'link':
-            return JSON.parse(JSON.stringify({
+            NodeObj = JSON.parse(JSON.stringify({
                 "Tag": "a",
                 "Class": isDisable ? "button disable" : "button enable",
                 "Href": onClick,
                 "Text": Value
             }));
-
+            break;
         default:
-            return JSON.parse(JSON.stringify({
+            NodeObj = JSON.parse(JSON.stringify({
                 "Tag": "button",
                 "Disabled": isDisable ? "disable" : false,
                 "OnClick": onClick,
                 "Text": Value
             }));
+            NodeObj['OnClick'] = onClick;
+            break;
     }
+    return NodeObj;
 }
 
 /**

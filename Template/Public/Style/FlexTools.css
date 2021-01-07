@@ -1,0 +1,72 @@
+.FlexTools {
+	display: flex;
+}
+
+.FlexTools div {
+	display: flex;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.column.left {
+	align-items: flex-start;
+}
+
+.column.right {
+	align-items: flex-end;
+}
+
+.column.top {
+	justify-content: flex-start;
+}
+
+.column.bottom {
+	justify-content: flex-end;
+}
+
+.column.Wcenter {
+	align-items: center;
+}
+
+.column.Hcenter {
+	justify-content: center;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.row.right {
+	justify-content: flex-start;
+}
+
+.row.right {
+	justify-content: flex-end;
+}
+
+.row.top {
+	display: flex;
+	align-items: flex-start;
+}
+
+.row.bottom {
+	align-items: flex-end;
+}
+
+.row.Wcenter {
+	justify-content: center;
+}
+
+.row.Hcenter {
+	align-items: center;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
