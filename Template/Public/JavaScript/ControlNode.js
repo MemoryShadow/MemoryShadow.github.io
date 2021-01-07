@@ -1,8 +1,9 @@
 /*
  * @Date: 2020-04-29 10:13:23
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2021-01-06 20:13:22
+ * @LastEditTime : 2021-01-07 13:07:51
  * @Effect: 内置类ControlNode,用于控制节点,并包含一些内置的控件,可以快速创建
+ * //!注:此类未完全完成,请勿用于生产环境
  */
 
 /**
@@ -69,7 +70,7 @@ function ControlNode(MainNodeID) {
     }
 
     /**
-     * 用于索引自动管理的控件
+     * 用于移除自动管理的控件
      * @param {int} Key 要删除的键
      * @return {HTMLElement} 被删除的节点控件
      */
@@ -150,6 +151,9 @@ ControlNode.NewNode = function (NodeDescription) {
             case "Checked":
                 // 处理选项信息,在这里额外处理
                 node.checked = NodeDescription[Attributes_Name];
+                break;
+            case "Disabled":
+                node.disabled = NodeDescription[Attributes_Name];
                 break;
 
             default:
@@ -270,7 +274,7 @@ ControlNode.getButtonNode = function (NodeDataType, Value, onClick, isDisable) {
         default:
             return JSON.parse(JSON.stringify({
                 "Tag": "button",
-                "Disabled": isDisable ? "disable" : "",
+                "Disabled": isDisable ? "disable" : false,
                 "OnClick": onClick,
                 "Text": Value
             }));
