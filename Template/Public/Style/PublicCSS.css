@@ -2,7 +2,7 @@
  * @Date         : 2020-10-18 10:52:43
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2021-01-07 23:00:40
+ * @LastEditTime : 2021-02-24 12:55:57
  * @Description  : 基础组件css样式
  */
 
@@ -81,4 +81,29 @@ div#bottom {
     bottom: 1px;
     left: 0px;
     width: 100%;
+}
+
+/**
+ * 启用滚动条自定义样式
+*/
+
+.ScrollBar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 5px;
+}
+
+.ScrollBar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #aaa;
+}
+
+.ScrollBar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    background: #fff;
 }
