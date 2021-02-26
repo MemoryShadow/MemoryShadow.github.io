@@ -2,7 +2,7 @@
  * @Date         : 2020-10-18 10:52:43
  * @Author       : MemoryShadow
  * @LastEditors  : MemoryShadow
- * @LastEditTime : 2021-02-24 13:10:55
+ * @LastEditTime : 2021-02-24 13:44:25
  * @Description  : 基础组件css样式
  */
 
@@ -107,6 +107,10 @@ div#bottom {
     border-radius: 3px;
     background: #fff;
 }
+
+/**
+ * 禁用选择
+ */
 
 .DisableSelect {
     -moz-user-select: none;
