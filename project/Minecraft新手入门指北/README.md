@@ -112,8 +112,10 @@ Java安装完成后,就要准备一个Minecraft的启动器了.如果你直接�
   * [Jre(近乎在任何操作系统上都能用\[3.3.172\])](http://ci.huangyuhui.net/job/HMCL/172/artifact/HMCL/build/libs/HMCL-3.3.172.jar "点击下载")
   * [开源地址](https://github.com/huanghongxun/HMCL "点击访问")
 * [PCL启动器(优秀的国产启动器,为Minecraft的下载有独特的下载优化)](https://afdian.net/@LTCat "点击访问")
+
 `注: 需要安装 .Net Framework 4才能运行`
   * [下载](https://www.microsoft.com/zh-cn/download/details.aspx?id=17718 "点击访问")
+
 `注: PCL仅内测版本才需要付费，公共版本无需付费`
   * [PCL内测申请页面](https://afdian.net/@LTCat "点击访问")
   
