@@ -12,7 +12,7 @@
 
 ## Minecraft:Bedrock Edition
 
-* [Android](http://mc.oi.sgpublic.xyz/ "点击前往")
+* [Android](https://sgpublic.xyz/mc/index.html "点击前往")
 
 ## 目录
 
