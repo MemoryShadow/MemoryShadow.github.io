@@ -43,7 +43,7 @@ function Loading_Control(ID) {
         switch (typeof ID) {
             case "string":
                 this.loading_canvas = document.getElementById(ID);
-                if (loading_canvas === null) {
+                if (this.loading_canvas === null) {
                     return undefined;
                 }
                 if (Loading_Control.indexOf(ID) !== undefined) {
