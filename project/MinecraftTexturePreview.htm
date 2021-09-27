@@ -1,0 +1,73 @@
+<!--
+ * @Date         : 2021-09-27 20:46:25
+ * @Author       : MemoryShadow
+ * @LastEditors  : MemoryShadow
+ * @LastEditTime : 2021-09-27 21:40:29
+ * @Description  : Minecraft 贴图 预览
+-->
+
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft 贴图 预览</title>
+    <script src="../Template/Public/JavaScript/MinecraftTexture.js"></script>
+    <script>
+        window.onload = (event) => {
+            let listObj = document.getElementById('list')
+            for (const index in TextureList) {
+                if (Object.hasOwnProperty.call(TextureList, index)) {
+                    const item = TextureList[index];
+                    console.log(index + " : " + item);
+                    let liObj = document.createElement('li');
+                    liObj.innerHTML = '<div><img src="data:image/png;base64,' + item + '"></div><p>' + index + '</p>';
+                    listObj.append(liObj);
+                }
+            }
+        }
+    </script>
+    <style>
+        body>ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        body>ul>li {
+            display: flex;
+            flex-direction: column;
+            width: 10vh;
+            margin: 5px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        body>ul>li>div{
+            width: 10vh;
+            height: 10vh;
+            overflow: hidden;
+        }
+
+        body>ul>li>div:hover {
+            overflow: visible
+        }
+
+        body>ul>li>div>img {
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list"> </ul>
+</body>
+
+</html>
