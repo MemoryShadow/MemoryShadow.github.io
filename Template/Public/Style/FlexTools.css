@@ -2,7 +2,7 @@
 	display: flex;
 }
 
-.FlexTools :is(header, main, footer) {
+.FlexTools :is(header, main, footer, div) {
 	display: flex;
 }
 
