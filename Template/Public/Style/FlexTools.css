@@ -76,23 +76,23 @@ body.FlexTools {
 	align-items: center;
 	justify-content: center;
 }
-
-:is(.FlexTools .column .center .row)>.item-left {
+/* 支持对子项操作，控制制定子项的左右 */
+:is(.FlexTools, .column, .center, .row)>.item-left {
     margin: auto;
     margin-left: 0;
 }
 
-:is(.FlexTools .column .center .row)>.item-right {
+:is(.FlexTools, .column, .center, .row)>.item-right {
     margin: auto;
     margin-right: 0;
 }
 
-:is(.FlexTools .column .center .row)>.item-left-10 {
+:is(.FlexTools, .column, .center, .row)>.item-left-10 {
     margin: auto;
     margin-left: 10%;
 }
 
-:is(.FlexTools .column .center .row)>.item-right-10 {
+:is(.FlexTools, .column, .center, .row)>.item-right-10 {
     margin: auto;
     margin-right: 10%;
 }
