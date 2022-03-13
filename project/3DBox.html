@@ -14,11 +14,13 @@
             height: 100%;
         }
     </style>
+    <script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
     <script src="../Template/Public/JavaScript/3DBox.js"></script>
     <script src="../Template/Public/JavaScript/MinecraftTexture.js"></script>
     <script>
         // 初始化操作
         function Init(event) {
+            let vConsole = new VConsole();
             Class_Box.setBoxObject_Eye('Sence');
             Class_Box.addBoxObject('Box', { ShadowColor: "#24dfec", Len: 100 });
             Class_Box.getBoxObject('Box').setBoxShadowSpread(0);
