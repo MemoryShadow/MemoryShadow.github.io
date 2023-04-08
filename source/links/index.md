@@ -1,5 +1,5 @@
 ---
-title: links
+title: 友情链接
 date: 2023-04-08 14:55:24
 ---
 <div id="qexo-friends"></div>
