@@ -108,3 +108,8 @@ search:
   path: search.xml
   field: post
   content: true
+
+server:
+  port: 5500
+  compress: true
+  header: true

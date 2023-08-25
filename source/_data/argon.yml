@@ -14,11 +14,17 @@ toolbar_icon_link: '' # 顶栏图标链接，点击时跳转
 toolbar_title: '' # 顶栏标题，留空则跟随博客标题
 toolbar_menu: # 顶栏菜单，支持二级菜单
   首页: /
-  网盘: https://pan.memoryshadow.cn
+  服务与功能:
+    服务状态: https://status.memoryshadow.cn/
+    网盘: https://pan.memoryshadow.cn
+  隐私与建议:
+    关于RTG生存服务器建议: https://memoryshadow.cn/index.php/2022/05/14/rtg-survival-server-suggest/
+    关于From服务器建议: https://memoryshadow.cn/index.php/2022/05/27/from-server-suggest/
+    关于MCZLF服务器建议: https://memoryshadow.cn/index.php/2023/02/05/mczlf-server-suggest/
+    关于机器人-筱的建议: https://memoryshadow.cn/index.php/2022/05/14/qqbot-xiao-suggest/
+    工单提交: https://memoryshadow.cn/index.php/workorder/
+    隐私政策: /privacy-policy
   友链: /links
-  隐私政策: /privacy-policy
-  # 二级菜单:
-  #   归档: /archives
 
 # Banner
 banner_title: '' # Banner 标题，留空则跟随博客标题
@@ -30,14 +36,22 @@ banner_background_hide_shapes: false # 是否隐藏 Banner 背景圆形
 banner_background_color_type: 'shape-primary' # Banner 渐变样式，Banner 背景图会覆盖该选项，可选值: shape-primary, shape-default, shape-dark, bg-gradient-success, bg-gradient-info, bg-gradient-warning, bg-gradient-danger
 
 # 侧栏
-sidebar_banner_title: '' # 侧栏标题，留空则跟随博客标题
-sidebar_banner_subtitle: '' # 侧栏子标题，留空则不显示，设为 --hitokoto-- 调用一言
-sidebar_announcement: '' # 侧栏公告，留空则不显示
+sidebar_banner_title: '每日一言' # 侧栏标题，留空则跟随博客标题
+sidebar_banner_subtitle: '--hitokoto--' # 侧栏子标题，留空则不显示，设为 --hitokoto-- 调用一言
+sidebar_announcement: '本站是一个镜像站, 通常请访问主站(https://memoryshadow.cn/)即可' # 侧栏公告，留空则不显示
 leftbar_menu: # 侧栏顶部菜单，支持无限层级菜单嵌套
   首页: /
-  <i class="fa-solid fa-cloud-arrow-down"></i> 网盘: https://pan.memoryshadow.cn
+  <i class="fa fa-cogs"></i> 服务与功能:
+    <i class="fa fa-heartbeat"></i> 服务状态: https://status.memoryshadow.cn/
+    <i class="fa-solid fa-cloud-arrow-down"></i> 网盘: https://pan.memoryshadow.cn
+  <i class="fa-solid fa-comments"></i> 隐私与建议:
+    <i class="fa-solid fa-comment"></i> 关于RTG生存服务器建议: https://memoryshadow.cn/index.php/2022/05/14/rtg-survival-server-suggest/
+    <i class="fa-solid fa-comment"></i> 关于From服务器建议: https://memoryshadow.cn/index.php/2022/05/27/from-server-suggest/
+    <i class="fa-solid fa-comment"></i> 关于MCZLF服务器建议: https://memoryshadow.cn/index.php/2023/02/05/mczlf-server-suggest/
+    <i class="fa-solid fa-robot"></i> 关于机器人-筱的建议: https://memoryshadow.cn/index.php/2022/05/14/qqbot-xiao-suggest/
+    <i class="fa-solid fa-paper-plane"></i> 工单提交: https://memoryshadow.cn/index.php/workorder/
+    <i class="fa-solid fa-layer-group"></i> 隐私政策: /privacy-policy
   <i class="fa-solid fa-link"></i> 友链: /links
-  <i class="fa-solid fa-layer-group"></i> 隐私政策: /privacy-policy
 sidebar_auther_image: 'http://dn-qiniu-avatar.qbox.me/avatar/a1fbed41ceae2d4bcbd99aac5bd3bd70' # 侧栏作者头像
 sidebar_auther_name: '墨兮枫' # 侧栏作者名，留空则跟随博客名
 leftbar_author_links: # 侧栏作者链接列表
